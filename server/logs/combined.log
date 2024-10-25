@@ -1,0 +1,49 @@
+2024-10-25T11:01:51.136Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongooseError: Model.create() no longer accepts a callback
+2024-10-25T11:04:57.740Z [error]: ERROR: createUser: Error al crear usuario (authController.js): TypeError: newUser.save is not a function
+2024-10-25T11:06:28.626Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ReferenceError: user is not defined
+2024-10-25T11:07:44.140Z [warn]: 	> createUser: El usuario ya existe (authController.js)
+2024-10-25T11:09:10.680Z [info]: 	> usuario: {
+  _id: new ObjectId('671b7bb475abaa2a5b1c3703'),
+  username: 'Cutiti007',
+  password: '123',
+  __v: 0
+}
+2024-10-25T11:09:10.741Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongoServerError: E11000 duplicate key error collection: test.users index: username_1 dup key: { username: "Cutiti007" }
+2024-10-25T11:11:09.167Z [info]: 	> usuario: {
+  _id: new ObjectId('671b7bb475abaa2a5b1c3703'),
+  username: 'Cutiti007',
+  password: '123',
+  __v: 0
+}
+2024-10-25T11:11:09.173Z [warn]: 	> createUser: El usuario ya existe (authController.js)
+2024-10-25T11:13:17.147Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongoServerError: E11000 duplicate key error collection: test.users index: username_1 dup key: { username: "Cutiti007" }
+2024-10-25T11:13:46.368Z [info]: 	> createUser: Usuario creado con exito (authController.js)
+2024-10-25T11:16:16.785Z [info]: 	> usuario: {
+  _id: new ObjectId('671b7d6acfb07fecc7b2b979'),
+  username: 'test',
+  password: '12345',
+  __v: 0
+}
+2024-10-25T11:16:16.790Z [warn]: 	> createUser: El usuario ya existe (authController.js)
+2024-10-25T11:26:39.733Z [info]: 	> usuario: 
+2024-10-25T11:26:39.737Z [warn]: 	> createUser: El usuario ya existe (authController.js)
+2024-10-25T11:27:40.391Z [info]: 	> usuario: 
+2024-10-25T11:27:40.397Z [warn]: 	> createUser: El usuario ya existe (authController.js)
+2024-10-25T11:28:37.343Z [info]: 	> usuario: undefined
+2024-10-25T11:28:37.362Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ValidationError: password: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"
+2024-10-25T11:32:36.130Z [error]: 	> Error al hashear password (authController.js): Error: Illegal arguments: string, undefined
+2024-10-25T11:33:29.701Z [info]: 	> usuario: undefined
+2024-10-25T11:33:29.711Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ValidationError: password: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"
+2024-10-25T11:34:24.275Z [info]: 	> usuario: undefined
+2024-10-25T11:34:24.285Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ValidationError: password: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"
+2024-10-25T11:37:42.682Z [info]: 	> usuario: undefined
+2024-10-25T11:37:42.743Z [info]: 	> createUser: Usuario creado con exito (authController.js)
+2024-10-25T11:37:54.165Z [info]: 	> usuario: undefined
+2024-10-25T11:37:54.206Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongoServerError: E11000 duplicate key error collection: test.users index: username_1 dup key: { username: "test2" }
+2024-10-25T11:39:22.598Z [warn]: 	> createUser: El usuario ya existe (authController.js)
+2024-10-25T11:39:32.419Z [info]: 	> createUser: Usuario creado con exito (authController.js)
+2024-10-25T11:39:35.232Z [warn]: 	> createUser: El usuario ya existe (authController.js)
+2024-10-25T11:46:12.366Z [info]: 	> Login: Acesso correcto (usuarioController.js)
+2024-10-25T11:46:12.372Z [info]: 	> Usuario conectado: "test3" (usuarioController.js)
+2024-10-25T11:53:23.704Z [info]: 	> Login: Acesso correcto (authController.js)
+2024-10-25T11:53:23.709Z [info]: 	> Usuario conectado: "test3" (authController.js)

@@ -1,0 +1,10 @@
+2024-10-25T11:01:51.136Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongooseError: Model.create() no longer accepts a callback
+2024-10-25T11:04:57.740Z [error]: ERROR: createUser: Error al crear usuario (authController.js): TypeError: newUser.save is not a function
+2024-10-25T11:06:28.626Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ReferenceError: user is not defined
+2024-10-25T11:09:10.741Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongoServerError: E11000 duplicate key error collection: test.users index: username_1 dup key: { username: "Cutiti007" }
+2024-10-25T11:13:17.147Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongoServerError: E11000 duplicate key error collection: test.users index: username_1 dup key: { username: "Cutiti007" }
+2024-10-25T11:28:37.362Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ValidationError: password: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"
+2024-10-25T11:32:36.130Z [error]: 	> Error al hashear password (authController.js): Error: Illegal arguments: string, undefined
+2024-10-25T11:33:29.711Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ValidationError: password: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"
+2024-10-25T11:34:24.285Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ValidationError: password: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"
+2024-10-25T11:37:54.206Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongoServerError: E11000 duplicate key error collection: test.users index: username_1 dup key: { username: "test2" }
