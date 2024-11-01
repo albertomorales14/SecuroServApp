@@ -52,12 +52,13 @@ authController.login = async (request, response) => {
                                 logger.info('\t> Usuario conectado: ' + JSON.stringify(user.username) + ' (authController.js)');
                                 
                                 const result = {
-                                    username: user.username,
-                                    password: user.password,
-                                    accessToken: accessToken,
-                                    expiresIn: expiresIn
+                                    dataUser: {
+                                        username: user.username,
+                                        password: user.password,
+                                        accessToken: accessToken,
+                                        expiresIn: expiresIn
+                                    }
                                 }
-
                                 response.json(result);
                             } else {
                                 logger.warn("\t> Login: Contraseña incorrecta (authController.js)");
@@ -65,13 +66,13 @@ authController.login = async (request, response) => {
                             }
                         });
                 } else {
-                    logger.warn('\t> Login: No existe el usuario (usuarioController.js)');
+                    logger.warn('\t> Login: No existe el usuario (authController.js)');
                     response.json({ mesagge: 'No existe este usuario' });
                 }
             });
     } catch (error) {
-        logger.error('ERROR: Login: Error al iniciar sesión (usuarioController.js): ' + error);
-        throw new Error('ERROR: Login: Error al iniciar sesión (usuarioController.js): ' + error);
+        logger.error('ERROR: Login: Error al iniciar sesión (authController.js): ' + error);
+        throw new Error('ERROR: Login: Error al iniciar sesión (authController.js): ' + error);
     }
 }
 

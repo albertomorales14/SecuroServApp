@@ -1,0 +1,28 @@
+<div class="login-body">
+    <div class="login-container">
+        <img class="securoser-logo-img" src="/img/securoserv-logo.png" alt="SecuroServ Logo" />
+        <h2>INICIA SESIÓN</h2>
+        <form #loginForm="ngForm" class="login-form" (ngSubmit)="onLogin(loginForm)" >
+            <div class="login-form-content">
+                    <div>
+                        <label for="username">Usuario</label>
+                        <input type="text" id="username" name="username" [(ngModel)]="username" required autocomplete="off"/>
+                    </div>
+                    <div>
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" [(ngModel)]="password" required />
+                    </div>
+            </div>
+            <button (click)="navigateToRegister()" class="login-link">Crea una cuenta nueva aquí</button>
+            <br>
+            <div class="login-form-bottom">
+                <div class="login-form-bottom-version">
+                    <p>VERSIÓN 1.2.5</p>
+                </div>
+                <div class="login-form-bottom-btn">
+                    <input type="submit" value="Iniciar sesión" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

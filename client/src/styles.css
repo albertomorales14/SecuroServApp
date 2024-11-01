@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lexend' !important;
+}
+
+:root {
+    --red-securo-serv: #c02a2b;
+    --dark-red-securo-serv: #90221c;
+    --dark-white: #939c93;
+    --full-height: -webkit-fill-available;
+}
+
+body {
+    
+}
+
+
+
+
+html, body { 
+    height: 100%; 
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::selection {
+    background-color: var(--dark-red-securo-serv);
+    color: white;
+}
