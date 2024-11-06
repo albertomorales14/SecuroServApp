@@ -1,0 +1,73 @@
+@import url("../../../../node_modules/leaflet/dist/leaflet.css");
+
+#map {
+    height: 100vh;
+    width: 100%;
+}
+
+/* Zoom box [+][-] */
+.leaflet-bar {
+    display: none;
+    border: none !important;
+    border-radius: 0%;
+}
+
+.leaflet-touch .leaflet-bar a {
+    line-height: normal !important;
+    border-bottom: 1px solid var(--dark-red-securo-serv) !important;
+}
+
+/* Zoom box [+][-] */
+.leaflet-touch .leaflet-bar a:first-child {
+    border-radius: 0% !important;
+}
+
+/* Zoom box [+][-] */
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    background-color: var(--dark-red-securo-serv) !important;
+    color: white !important;
+    margin: 1.5% 2%;
+}
+
+a.leaflet-control-zoom-in.leaflet-disable,
+a.leaflet-control-zoom-out.leaflet-disable {
+    background-color: var(--dark-red-securo-serv) !important;
+}
+
+
+
+/* Boton inferior Resumen-Almacenes */
+.bottom-map-container {
+    display: flex;
+    position: absolute;
+    z-index: 700;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 2%;
+    margin-right: 5%;
+}
+
+.bottom-map-container > button {
+    color: white;
+    border: none;
+    padding: 2% 10%;
+}
+
+.button-active {
+    background-color: var(--dark-red-securo-serv);
+}
+
+.button-inactive {
+    background-color: black;
+}
+
+.bottom-map-container > button:hover {
+    background-color: var(--red-securo-serv);
+    cursor: var(--gtav-cursor), auto !important;
+}
+
+
+/* No muestra link documentacion de leaflet */
+.leaflet-control-attribution, .leaflet-control-attribution > a {
+    display: none !important;
+}

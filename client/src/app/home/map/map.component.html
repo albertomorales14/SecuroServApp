@@ -1,0 +1,11 @@
+<div class="map-container">
+    <div id="map"></div>
+    <div class="bottom-map-container">
+        <button (click)="disableInteractions()" [ngClass]="{ 'button-active': !interactionsEnabled, 'button-inactive': interactionsEnabled }">
+            RESUMEN
+        </button>
+        <button (click)="enableInteractions()" [ngClass]="{ 'button-active': interactionsEnabled, 'button-inactive': !interactionsEnabled }">
+            ALMACENES
+        </button>
+    </div>
+</div>

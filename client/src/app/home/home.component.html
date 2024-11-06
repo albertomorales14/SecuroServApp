@@ -1,2 +1,29 @@
-<p>home works!  {{ username }} </p>
+<div class="home-page-view">
+    <div class="home-container">
+        <div class="welcome-msg" *ngIf="isLayoutVisible">
+            <h1>Bienvenido, {{ username }}</h1>
+            <button (click)="onLogout()">logout</button>
+            
+            <div class="parent">
+                <div [@aparecer1] class="div1">
+                    <app-resumen1></app-resumen1>
+                </div>
+                <div class="div2">
+                    2
+                </div>
+                <div [@aparecer2] class="div3">
+                    <app-resumen2></app-resumen2>
+                </div>
+                <div class="div4">4</div>
+                <div [@aparecer3] class="div5">5
+                    Lorem ipsum dolor  auptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                </div>
+            </div>
+        </div>
+        <div class="map-container">
+            <app-map (layoutToggled)="onLayoutToggled($event)"></app-map>
+        </div>
+    </div>
+</div>
+
 

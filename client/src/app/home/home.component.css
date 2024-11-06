@@ -1,0 +1,59 @@
+.welcome-msg {
+    padding: 1%;
+    color: white;
+    width: 80%;
+}
+
+.welcome-msg {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+}
+
+
+/* Resumen Grid */
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(11, 1fr);
+    gap: 1.25rem;
+}
+
+.parent > div {
+    background-color: black;
+    border: 1px solid red; /*test*/
+}
+    
+.div1 {
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    
+}
+
+.div2 {
+    grid-column: span 2 / span 2;
+    grid-row: span 9 / span 9;
+    grid-column-start: 4;
+}
+
+.div3 {
+    grid-column: span 3 / span 3;
+    grid-row: span 2 / span 2;
+    grid-row-start: 4;
+}
+
+.div4 {
+    grid-column: span 3 / span 3;
+    grid-row: span 6 / span 6;
+    grid-row-start: 6;
+}
+
+.div5 {
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 4;
+    grid-row-start: 10;
+}
+        

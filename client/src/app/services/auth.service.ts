@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { JwtResponse } from '../models/jwt-response';
-import { tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthStateService } from './auth-state.service';
@@ -12,6 +12,11 @@ import { AuthStateService } from './auth-state.service';
 export class AuthService {
     authSubject = new BehaviorSubject(false);
     private token: string = '';
+
+    private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+    public currentUser: Observable<User | null> = this.currentUserSubject.asObservable();
+
+    // set user after register
     private tempUsername: string = '';
     private tempPassword: string = '';
 
@@ -31,21 +36,20 @@ export class AuthService {
     }
 
     login(user: User): Observable<JwtResponse> {
-        console.log('entra login auth service')
-        console.log(user.username + '    /////  ' + user.password)
         return this.httpClient.post<JwtResponse>(`${environment.url}/login`, user, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             })
         }).pipe(tap((response: JwtResponse) => {
-            console.log('Respuesta completa:', (response));
-            console.log('ressppppp ', response?.dataUser);
             if (response && response.dataUser) {
                 if (response.dataUser.accessToken) {
-                    // this.authState.setAuthenticated(true);
+
+                    this.currentUserSubject.next(user);
+
+                    this.authState.setAuthenticated(true);
                     this.saveToken(response.dataUser.accessToken, response.dataUser.expiresIn);
-                    this.router.navigate(['/home']);
+                    
                 } else {
                     console.warn('No se recibió un accessToken en la respuesta.');
                 }
@@ -64,17 +68,15 @@ export class AuthService {
     }
 
     logout(): void {
-        //this.authState.setAuthenticated(false);
+        this.authState.setAuthenticated(false);
         this.token = '';
         localStorage.removeItem('ACCESS_TOKEN');
         localStorage.removeItem('EXPIRES_IN');
         this.authSubject.next(false); // Notifica que el usuario ha cerrado sesión
+        this.router.navigate(['/auth/login']);
     }
 
-    getUserInfo() {
-        return this.httpClient.get<{ id: string }>(`${environment.url}/api/???????`);
-    }
-
+    // token
     private saveToken(token: string, expiresIn: string): void {
         localStorage.setItem('ACCESS_TOKEN', token);
         localStorage.setItem('EXPIRES_IN', expiresIn);
@@ -89,6 +91,7 @@ export class AuthService {
         return this.authState.isAuthenticated();
     }
 
+    // set user into form after register
     setTempCredentials(username: string, password: string) {
         this.tempUsername = username;
         this.tempPassword = password;
