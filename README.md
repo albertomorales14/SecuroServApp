@@ -1,13 +1,16 @@
-READ ME
+READ ME<br>
 
-frontend
-ng add @angular/material
-backend
-express
-cors
-mongoose
-bcryptjs
-body-parser
-jwt
-winston
-nodemon
+frontend<br>
+ng add @angular/material<br>
+leaflet<br>
+asymmetrik/ngx-leaflet<br>
+@mugan86/ng-leaflet<br>
+backend<br>
+express<br>
+cors<br>
+mongoose<br>
+bcryptjs<br>
+body-parser<br>
+jwt<br>
+winston<br>
+nodemon<br>
