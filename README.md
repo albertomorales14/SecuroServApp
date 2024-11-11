@@ -14,3 +14,8 @@ body-parser<br>
 jwt<br>
 winston<br>
 nodemon<br>
+
+npm install chart.js
+npm install ng2-charts
+patternomaly
+npm install leaflet-graticule
