@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { homeComponentAnimation } from '../../../../assets/animations';
+import { CHARTS_UTILS } from '../../../../assets/chartsUtils';
 
 @Component({
   selector: 'app-resumen2',
@@ -10,5 +11,11 @@ import { homeComponentAnimation } from '../../../../assets/animations';
   animations: [homeComponentAnimation]
 })
 export class Resumen2Component {
+
+  almacenes_propiedad_msg: string = CHARTS_UTILS.ALMACENES_PROPIEDAD;
+  total_ganancias_msg: string = CHARTS_UTILS.TOTAL_GANANCIAS;
+
+  constructor() { }
+
 
 }

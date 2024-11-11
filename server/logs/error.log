@@ -8,3 +8,19 @@
 2024-10-25T11:33:29.711Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ValidationError: password: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"
 2024-10-25T11:34:24.285Z [error]: ERROR: createUser: Error al crear usuario (authController.js): ValidationError: password: Cast to string failed for value "Promise { <pending> }" (type Promise) at path "password"
 2024-10-25T11:37:54.206Z [error]: ERROR: createUser: Error al crear usuario (authController.js): MongoServerError: E11000 duplicate key error collection: test.users index: username_1 dup key: { username: "test2" }
+2024-11-07T08:49:19.697Z [error]: ERROR: Login: Error al iniciar sesión (authController.js): Error: read ECONNRESET
+2024-11-08T08:22:11.781Z [error]: ERROR: Login: Error al iniciar sesión (authController.js): Error: read ECONNRESET
+2024-11-08T09:42:14.433Z [error]: ERROR: Login: Error al iniciar sesión (authController.js): Error: read ECONNRESET
+2024-11-08T09:44:08.432Z [error]: ERROR: Login: Error al iniciar sesión (authController.js): Error: read ECONNRESET
+2024-11-08T11:59:11.263Z [error]: ERROR: Login: Error al iniciar sesión (authController.js): MongoServerSelectionError: getaddrinfo ENOTFOUND securoservcluster-shard-00-01.amwbm.mongodb.net
+2024-11-09T15:44:52.404Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T15:46:13.793Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T15:46:42.468Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T15:47:02.627Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T15:55:40.047Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T15:56:15.677Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T15:56:28.598Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T16:12:54.777Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T16:14:19.973Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-09T16:14:37.298Z [error]: 	> Error: getAlmacenesByUserId: Invalid user ID (almacenController.js)
+2024-11-11T12:44:07.172Z [error]: ERROR: Login: Error al iniciar sesión (authController.js): Error: read ECONNRESET

@@ -1,0 +1,78 @@
+<div class="popupTemplate">
+    <div class="popupTemplate-div1">
+        <figure class="warehouse-figure">
+            <img [src]="imageSrc" alt="{{ markerData.name }}" />
+        </figure>
+        <div class="space-p-popup-info">
+            {{ markerData.name }}
+        </div>
+    
+    <div class="warehouse-info">
+        <div class="parent">
+            <div class="div1 popup-info-item popup-info-item-left">
+                UBICACIÓN:
+            </div>
+            <div class="div2 popup-info-item popup-info-item-right">
+                {{ markerData.ubicacion }}
+            </div>
+            <div class="div3 popup-info-item popup-info-item-left">
+                TAMAÑO:
+            </div>
+            <div class="div4 popup-info-item popup-info-item-right">
+                {{ markerData.size }}
+            </div>
+            <div class="div5 popup-info-item popup-info-item-left">
+                MERCANCÍA ESPECIAL:
+            </div>
+            <div class="div6 popup-info-item popup-info-item-right">
+                {{ markerData.existencias }} / {{ markerData.capacidadMax }} cajas
+            </div>
+            <div class="div7 popup-info-item popup-info-item-left">
+                VALOR ACTUAL:
+            </div>
+            <div class="div8 popup-info-item popup-info-item-right">
+                {{ markerData.valor }}
+            </div>
+        </div>
+    </div>
+    <div class="progress-bar-container">
+        <div class="progress-bar-label">
+            <label for="cajas-percent-bar">value %</label>
+        </div>
+        <progress id="cajas-percent-bar" value="32" max="100"></progress>
+    </div>
+</div>
+    <div class="center-p-popup-info">
+        {{ markerData.tipo }}
+    </div>
+
+    <div class="popupTemplate-div2">
+        <div class="tit-buy-box">1 caja: {{ markerData.tipo }}</div>
+        <div class="parent-div2">
+            <div class="div1-buy-box">
+                $2,000
+            </div>
+            <div class="div2-buy-box">
+                <button class="buy-box-btn">COMPRAR</button>
+            </div>
+        </div>
+        <div class="tit-buy-box">2 cajas: {{ markerData.tipo }}</div>
+        <div class="parent-div2">
+            <div class="div1-buy-box">
+                $8,000
+            </div>
+            <div class="div2-buy-box">
+                <button class="buy-box-btn">COMPRAR</button>
+            </div>
+        </div>
+        <div class="tit-buy-box">3 cajas: {{ markerData.tipo }}</div>
+        <div class="parent-div2">
+            <div class="div1-buy-box">
+                $18,000
+            </div>
+            <div class="div2-buy-box">
+                <button class="buy-box-btn">COMPRAR</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,59 +1,109 @@
-.welcome-msg {
+.resumen-page {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    z-index: 500;
     padding: 1%;
     color: white;
     width: 80%;
 }
 
-.welcome-msg {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 500;
-}
-
-
 /* Resumen Grid */
-.parent {
+.resume-grid-parent {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(11, 1fr);
-    gap: 1.25rem;
+    grid-template-rows: repeat(10, 1fr);
+    gap: 0.75rem;
 }
 
-.parent > div {
-    background-color: black;
-    border: 1px solid red; /*test*/
+.resume-grid-parent > div {
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 10px;
 }
-    
-.div1 {
+
+/* Componente 1 */
+.div1-resume-grid-child {
     grid-column: span 3 / span 3;
     grid-row: span 3 / span 3;
     
 }
 
-.div2 {
+/* Componente 2: Gráfico de Donnut */
+.div2-resume-grid-child {
     grid-column: span 2 / span 2;
-    grid-row: span 9 / span 9;
+    grid-row: span 8 / span 8;
     grid-column-start: 4;
 }
 
-.div3 {
+
+.div2-container > div > h2 {
+    font-weight: 100;
+}
+
+/* X / X cajas */
+.num-existencias {
+    text-align: center;
+    font-size: 2em;
+    padding-bottom: 2%;
+}
+
+/* Componente 3 (Botón ALMACENES) */
+.div3-resume-grid-child {
     grid-column: span 3 / span 3;
-    grid-row: span 2 / span 2;
     grid-row-start: 4;
 }
 
-.div4 {
-    grid-column: span 3 / span 3;
-    grid-row: span 6 / span 6;
-    grid-row-start: 6;
+/* Grid dentro del div 3 */
+.div3-grid-parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px;
+}
+    
+.div3-grid-child1 {
+    grid-column: span 4 / span 4;
+    grid-row: span 2 / span 2;
 }
 
-.div5 {
+/* Layout Botón ALMACENES */
+.div3-grid-child2 {
+    grid-row: span 2 / span 2;
+    grid-column-start: 5;
+}
+
+/* Botón ALMACENES */
+.btn-warehouses {
+    width: 100%;
+    height: -webkit-fill-available;
+    border: none;
+    color: white;
+    background-color: var(--dark-red-securo-serv);
+}
+
+.btn-warehouses:hover {
+    cursor: var(--gtav-cursor), auto !important;
+    background-color: var(--red-securo-serv);
+}
+
+/* Componente 4: Gráfico de Barras */
+.div4-resume-grid-child {
+    grid-column: span 3 / span 3;
+    grid-row: span 6 / span 6;
+    grid-column-start: 1;
+    grid-row-start: 5;
+}
+
+.div4-container > div > h2 {
+    font-weight: 100;
+}
+
+/* Último componente */
+.div5-resume-grid-child {
     grid-column: span 2 / span 2;
     grid-row: span 2 / span 2;
     grid-column-start: 4;
-    grid-row-start: 10;
+    grid-row-start: 9;
 }
         

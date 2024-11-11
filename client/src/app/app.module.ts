@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgLeafletModule } from '@mugan86/ng-leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MapService } from './services/map.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,7 +24,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
         AuthModule,
         NgLeafletModule, LeafletModule
     ],
-    providers: [AuthService],
+    providers: [AuthService, MapService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

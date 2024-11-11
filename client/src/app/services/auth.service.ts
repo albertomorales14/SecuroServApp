@@ -7,6 +7,7 @@ import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthStateService } from './auth-state.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -15,6 +16,7 @@ export class AuthService {
 
     private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
     public currentUser: Observable<User | null> = this.currentUserSubject.asObservable();
+    private user!: User;
 
     // set user after register
     private tempUsername: string = '';
@@ -46,6 +48,15 @@ export class AuthService {
                 if (response.dataUser.accessToken) {
 
                     this.currentUserSubject.next(user);
+                    jwtDecode<JwtResponse>(response.dataUser.accessToken);
+
+                    if (jwtDecode<JwtResponse>(response.dataUser.accessToken).dataUser?.id) {
+                        
+                    }
+
+                    console.log('decode  ' + jwtDecode<JwtResponse>(response.dataUser.accessToken).dataUser);
+                     
+                    this.user = user;
 
                     this.authState.setAuthenticated(true);
                     this.saveToken(response.dataUser.accessToken, response.dataUser.expiresIn);
@@ -74,6 +85,11 @@ export class AuthService {
         localStorage.removeItem('EXPIRES_IN');
         this.authSubject.next(false); // Notifica que el usuario ha cerrado sesión
         this.router.navigate(['/auth/login']);
+    }
+
+    getUser(): User {
+        console.log('get user: ' + this?.user.id)
+        return this?.user;
     }
 
     // token

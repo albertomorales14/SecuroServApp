@@ -1,0 +1,52 @@
+<div class="popupTemplate">
+    <div class="popupTemplate-div1">
+        <figure class="warehouse-figure">
+            <img [src]="imageSrc" alt="{{ markerData.name }}" />
+        </figure>
+        <div class="space-p-popup-info">
+            {{ markerData.name }}
+        </div>
+    </div>
+    <div class="warehouse-info">
+        <div class="parent-no-comprado">
+            <div class="div1 popup-info-item popup-info-item-left">
+                UBICACIÓN:
+            </div>
+            <div class="div2 popup-info-item popup-info-item-right">
+                {{ markerData.ubicacion }}
+            </div>
+            <div class="div3 popup-info-item popup-info-item-left">
+                TAMAÑO:
+            </div>
+            <div class="div4 popup-info-item popup-info-item-right">
+                {{ markerData.size }}
+            </div>
+            <div class="div5 popup-info-item popup-info-item-left">
+                CAPACIDAD:
+            </div>
+            <div class="div6 popup-info-item popup-info-item-right">
+                {{ markerData.capacidadMax }} cajas
+            </div>
+        </div>
+    </div>
+
+    <div class="popupTemplate-div2">
+        <div class="popup-info-desc-tit">
+            DESCRIPCIÓN:
+        </div>
+        <div class="popup-info-desc-txt">
+            Lorem ipsum dolor auptate velit esse 
+            cillum dolore eu fugiat nulla pariatur. 
+            Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui 
+            officia deserunt mollit anim id est laborum
+            Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui 
+            officia deserunt mollit anim id est laborum
+        </div>
+        <div class="div-buy-warehouse">
+            <h2 class="warehouse-price-txt">$400,000</h2>
+            <button class="buy-warehouse-btn">COMPRAR</button>
+        </div>
+    </div>
+</div>

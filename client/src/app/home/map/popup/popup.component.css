@@ -1,0 +1,197 @@
+.popupTemplate-div1 {
+    background-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor de imagen */
+.warehouse-figure {
+    background-color: black;
+}
+
+/* Imagen del Almacen */
+.warehouse-figure > img {
+    width: 100%;
+    filter: grayscale(1);
+    object-fit: cover;
+    height: 25vh;
+}
+
+.warehouse-info {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 3%;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 8px;
+}
+    
+.div1 {
+    grid-column: span 4 / span 4;
+}
+
+.div2 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 5;
+}
+
+.div3 {
+    grid-column: span 4 / span 4;
+    grid-row-start: 2;
+}
+
+.div4 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 5;
+    grid-row-start: 2;
+}
+
+.div5 {
+    grid-column: span 4 / span 4;
+    grid-row-start: 3;
+}
+
+.div6 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 5;
+    grid-row-start: 3;
+}
+
+.div7 {
+    grid-column: span 4 / span 4;
+    grid-row-start: 4;
+}
+
+.div8 {
+    grid-column: span 2 / span 2;
+    grid-column-start: 5;
+    grid-row-start: 4;
+}
+
+.popup-info-item-right {
+    text-align: end;
+}
+
+.popup-info-item-left {
+    text-align: start;
+}
+
+.space-p-popup-info {
+    padding-left: 3%;
+    background-color: black;
+
+}
+
+.center-p-popup-info {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1% 0;
+    margin: 5px 0;
+}
+
+/* Barra roja de progreso % */
+progress {
+    width: 100%;
+    border-radius: 0;
+    height: 2em;
+}
+
+progress::-webkit-progress-bar {
+    background-color: black;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--red-securo-serv) !important;
+}
+
+.progress-bar-container {
+    position: relative;
+    background-color: black;
+}
+
+.progress-bar-label {
+    position: absolute;
+}
+
+.popupTemplate-div2 {
+    background-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Grid cajas */
+.parent-div2 {
+    display: flex;
+}
+
+/* x caja(s): tipo de material */
+.tit-buy-box {
+    padding-top: 1%;
+    padding-left: 3%;
+}
+
+/* $ Precio de cajas */
+.div1-buy-box {
+    flex: 1;
+    font-size: 1.5em;
+    margin: auto;
+    padding-left: 3%;
+}
+
+/* Green Buy Button */
+.div2-buy-box {
+    flex: 1;
+    text-align: end;
+}
+
+.buy-box-btn {
+    background-color: var(--dark-green-securo-serv);
+    border: none;
+    color: white;
+    padding: 5% 13%;
+    margin: 4%;
+}
+
+.buy-box-btn:hover {
+    background-color: var(--green-securo-serv);
+    cursor: var(--gtav-cursor), auto !important;
+}
+
+/* Template 2: No Comprado */
+.parent-no-comprado {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.popup-info-desc-tit {
+    padding: 1% 3%;
+}
+
+.popup-info-desc-txt {
+    padding: 0% 3%;
+}
+
+.warehouse-price-txt {
+    font-weight: 100;
+    text-align: center;
+    padding: 2%;
+}
+
+/* Red Buy Button */
+.buy-warehouse-btn {
+    background-color: var(--dark-red-securo-serv);
+    border: none;
+    color: white;
+    padding: 3%;
+    width: 100%;
+}
+
+.buy-warehouse-btn:hover {
+    background-color: var(--red-securo-serv);
+    cursor: var(--gtav-cursor), auto !important;
+    border: none;
+    color: white;
+}

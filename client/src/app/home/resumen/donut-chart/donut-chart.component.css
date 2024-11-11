@@ -1,0 +1,73 @@
+#doughnut-chart {
+    aspect-ratio: auto 514 / 514 !important;
+    height: 514px;
+    width: 514px;
+}
+
+.center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.center-text p:first-child {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.center-text p:last-child {
+    font-size: 16px;
+}
+
+
+.doughnut-chart-container {
+    padding: 5%;
+    position: relative;
+    text-align: center;
+}
+
+.doughnut-chart-container:hover {
+    cursor: var(--gtav-cursor), auto !important;
+}
+
+.doughnut-chart-container>img {
+    width: 25%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.custom-legend {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Ajusta según necesites */
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: white; /* Cambia según el color de fondo de tu página */
+  }
+  
+  .legend-left {
+    margin-left: 20px; /* Ajusta el espaciado desde el borde izquierdo */
+  }
+  
+  .legend-right {
+    margin-right: 20px; /* Ajusta el espaciado desde el borde derecho */
+  }
+  
+  .legend-color {
+    display: inline-block;
+    width: 20px;
+    height: 5px;
+    margin-right: 5px;
+  }

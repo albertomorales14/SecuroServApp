@@ -1,0 +1,22 @@
+<div class="custom-legend">
+    <span class="legend-item legend-left">
+      <span class="legend-color" [style.backgroundColor]="WHITE"></span>
+      {{ doughnutChartLabels[1] }}
+    </span>
+    <span class="legend-item legend-right">
+      <span class="legend-color" [style.backgroundColor]="DARK_RED"></span>
+      {{ doughnutChartLabels[0] }}
+    </span>
+</div>
+<div class="doughnut-chart-container">
+    <img src="../../../../assets/img/securoserv-logo.png" alt="securoserv-logo" />
+    <canvas id="doughnut-chart" baseChart 
+            [type]="'doughnut'" 
+            [labels]="doughnutChartLabels"
+            [datasets]="doughnutChartDatasets" 
+            [options]="doughnutChartOptions" 
+            [legend]="true">
+    </canvas>
+</div>
+
+

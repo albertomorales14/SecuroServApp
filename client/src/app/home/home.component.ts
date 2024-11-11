@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { ViewChild, ViewChildren, ElementRef, Renderer2, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
@@ -6,6 +7,9 @@ import { MapComponent } from './map/map.component';
 import { homeComponentAnimation } from '../../assets/animations';
 import { Resumen1Component } from './resumen/resumen1/resumen1.component';
 import { Resumen2Component } from './resumen/resumen2/resumen2.component';
+import { DonutChartComponent } from './resumen/donut-chart/donut-chart.component';
+import { BarChartComponent } from './resumen/bar-chart/bar-chart.component';
+import { EventEmitter, Output } from '@angular/core';
 
 @Component({
     selector: 'app-home',
@@ -13,7 +17,9 @@ import { Resumen2Component } from './resumen/resumen2/resumen2.component';
     imports: [
         CommonModule,
         Resumen1Component,
-        Resumen2Component, 
+        Resumen2Component,
+        DonutChartComponent,
+        BarChartComponent,
         MapComponent
     ],
     templateUrl: './home.component.html',
@@ -24,12 +30,19 @@ export class HomeComponent implements OnInit {
 
     username: string | null = null;
     isLayoutVisible: boolean = true;
+    @ViewChild(MapComponent) childComponent!: MapComponent;
 
     constructor(private authService: AuthService, @Inject(PLATFORM_ID) private platformId: Object) { }
 
     // Mostrar / Ocultar Layout Resumen
     onLayoutToggled(isVisible: boolean) {
         this.isLayoutVisible = isVisible; // Actualizar el valor del layout
+    }
+
+    handleClickWareHousesButton() {
+        if (this.childComponent) {
+            this.childComponent.triggerButtonClick(); // Llama al método solo si `childComponent` está disponible
+          }
     }
 
     async ngOnInit(): Promise<void> {

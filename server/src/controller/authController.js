@@ -31,10 +31,9 @@ authController.createUser = async (request, response) => {
     }
 }
 
-
+// Iniciar sesión
 authController.login = async (request, response) => {
     try {
-
         const body = request.body;
         await Usuario.findOne({ username: body.username })
             .then(user => {
