@@ -19,5 +19,5 @@ const envConfigFile = `
 `;
 
 // Crea el archivo environment.prod.ts en la carpeta src/environments
-fs.writeFileSync('./client/src/environments/environment.prod.ts', envConfigFile);
+fs.writeFileSync('./src/environments/environment.prod.ts', envConfigFile);
 console.log('Environment file generated successfully');
