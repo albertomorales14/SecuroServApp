@@ -37,6 +37,7 @@ export class MapComponent {
 
     // PopUp
     showPopupLayout: boolean | undefined = false;
+    popupContent: any;
 
     // Layers
     hillShadeLayer: any;
@@ -50,11 +51,19 @@ export class MapComponent {
         @Inject(PLATFORM_ID) private platformId: Object,
         private mapService: MapService,
         private authService: AuthService
-    ) { 
+    ) {
         //this.getAllWareHouses();
         this.defaultLayerImg = `${environment.CLOUDINARY_API_URL}/ORIGINAL_LAYER_wjvlth.png`;
         this.hillShadeImg = `${environment.CLOUDINARY_API_URL}/HILL_SHADE_LAYER_oalgvx.png`;
         this.darkLayerImg = `${environment.CLOUDINARY_API_URL}/DARK_LAYER_xvw2db.png`;
+    }
+
+    ngAfterViewInit(): void {
+        // Aquí puedes estar seguro de que el DOM de Angular está listo
+        console.log('ngAfterViewInit...')
+        this.popupContent = document.querySelectorAll('.popupTemplate');
+                            
+        
     }
 
     async ngOnInit(): Promise<void> {
@@ -77,7 +86,7 @@ export class MapComponent {
             this.map = L.map('map', {
                 center: [36.13326, -5.45051],
                 zoom: 16,
-                layers: [ this.darkLayer, this.hillShadeLayer],
+                layers: [this.darkLayer, this.hillShadeLayer],
                 dragging: this.interactionsEnabled,
                 scrollWheelZoom: this.interactionsEnabled,
                 doubleClickZoom: this.interactionsEnabled,
@@ -102,6 +111,7 @@ export class MapComponent {
             // pintar coordenadas en consola
             this.map.on('click', (e: L.LeafletMouseEvent) => {
                 this.showPopupLayout = false;
+                console.log('showPopupLayout ' + this.showPopupLayout);
                 this.printCoordinates(e.latlng); // Llamar a la función que imprime las coordenadas
             });
 
@@ -117,6 +127,7 @@ export class MapComponent {
 
     // Establece los límites de desplazamiento máximo
     private setBounds(L: any) {
+        console.log('init setBounds...');
         const bounds = L.latLngBounds(
             COORDENADAS.SOUTHWEST, // Esquina suroeste (límite inferior)
             COORDENADAS.NORTHEAST  // Esquina noreste (límite superior)
@@ -127,9 +138,11 @@ export class MapComponent {
         });
     }
 
+
     // Añade los marcadores de los almacenes
-    private async addMarkers(L: any): Promise<void> {
+    private addMarkers(L: any): void {
         if (isPlatformBrowser(this.platformId)) {
+            console.log('init addMarkers...');
 
             const redIcon = L.icon(MARKER.RED);
             const redActiveIcon = L.icon(MARKER.RED_ACTIVE);
@@ -143,115 +156,76 @@ export class MapComponent {
                     // Establece el valor de la lista global con todos los almacenes
                     this.listaAlmacenes = data;
                     console.log('lista de almacenes obtenida: ');
-                    data.forEach(almacen => {
-                        /******** temp */console.log('bucle: ' + almacen);
-                        const marker = L.marker(
-                            [almacen.lat, almacen.long], {
-                            icon: almacen.comprado ? greenIcon : redIcon
-                        }
-                        ).addTo(this.map);
-    
-                        const popupContent = document.querySelectorAll('.popupTemplate');
-                        popupContent.forEach(popupContent => {
-                            marker.bindPopup(popupContent);
-                        });
-    
-                        ///const popupContent = this.createPopupContent(almacen);
-                        ///marker.bindPopup(popupContent);
-    
-                        marker.on('click', () => {
-                            this.mapService.setMarkerData(almacen);
-                            this.showPopupLayout = true;
-                            marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
-                            marker.on('mouseout', () => {
-                                marker.setIcon(almacen.comprado ? greenIcon : redIcon)
-                            });
-                        });
-    
-                        marker.on('mouseover', () => {
-                            marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
-                            marker.on('mouseout', () => {
-                                if (!this.showPopupLayout) {
-                                    marker.setIcon(almacen.comprado ? greenIcon : redIcon)
-                                }
-                            });
-                        });
-    
-    
-                        this.markers.push({ marker, almacen });
-                    });
+                    
+
+
+                    
                 },
                 error: (error) => {
                     console.error('Error al obtener almacenes:', error);
                 },
-                complete: () => { }
-            });
+                complete: () => {
+                    if (this.map) {
+                        const homeMarker = L.marker(COORDENADAS.HOME, { icon: homeIcon }).addTo(this.map);
+                        //this.markers.push(homeMarker);
+                        this.markers.push({ marker: homeMarker, almacen: this.mapService.getEmptyWareHouse() });
 
-            
+                        this.listaAlmacenes.forEach(almacen => {
+                    /******** temp */console.log('bucle: ' + almacen);
+                            const marker = L.marker(
+                                [almacen.lat, almacen.long], {
+                                icon: almacen.comprado ? greenIcon : redIcon
+                            }
+                            ).addTo(this.map);
 
-
-            if (this.map) {
-
-                const homeMarker = L.marker(COORDENADAS.HOME, { icon: homeIcon }).addTo(this.map);
-                //this.markers.push(homeMarker);
-                this.markers.push({ marker: homeMarker, almacen: this.mapService.getEmptyWareHouse() });
-
-                //const m1 = L.marker([this.listaAlmacenes[0].lat, this.listaAlmacenes[0].long], { icon: redIcon }).addTo(this.map);
-                //this.markers.push(m1);
-
-                if (this.listaAlmacenes.length === 0) {
-                    //alert('Error: Hubo un problema al cargar los almacenes. Reintentando...');
-                    //this.getAllWareHouses();
-                } else {
-                    /*this.listaAlmacenes.forEach((almacen) => {
-                        
-                        const marker = L.marker(
-                            [almacen.lat, almacen.long], {
-                            icon: almacen.comprado ? greenIcon : redIcon
-                        }
-                        ).addTo(this.map);
-    
-                        const popupContent = document.querySelectorAll('.popupTemplate');
-                        popupContent.forEach(popupContent => {
-                            marker.bindPopup(popupContent);
-                        });
-    
-                        ///const popupContent = this.createPopupContent(almacen);
-                        ///marker.bindPopup(popupContent);
-    
-                        marker.on('click', () => {
-                            this.mapService.setMarkerData(almacen);
-                            this.showPopupLayout = true;
-                            marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
-                            marker.on('mouseout', () => {
-                                marker.setIcon(almacen.comprado ? greenIcon : redIcon)
+                            // el bueno
+                            /*
+                            const popupContent = document.querySelectorAll('.popupTemplate');
+                            popupContent.forEach(popupContent => {
+                                marker.bindPopup(popupContent);
                             });
-                        });
-    
-                        marker.on('mouseover', () => {
-                            marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
-                            marker.on('mouseout', () => {
-                                if (!this.showPopupLayout) {
+*/
+this.popupContent.forEach((popupContent: any) => {
+    marker.bindPopup(popupContent);
+});
+                            
+
+                            marker.on('click', () => {
+                                
+                                console.log(' antes clic showPopupLayout ' + this.showPopupLayout);
+                                this.mapService.setMarkerData(almacen);
+                                this.showPopupLayout = true;
+                                marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
+                                marker.on('mouseout', () => {
                                     marker.setIcon(almacen.comprado ? greenIcon : redIcon)
-                                }
+                                });
+                                console.log('despues showPopupLayout ' + this.showPopupLayout);
                             });
+
+                            marker.on('mouseover', () => {
+                                marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
+                                marker.on('mouseout', () => {
+                                    if (!this.showPopupLayout) {
+                                        marker.setIcon(almacen.comprado ? greenIcon : redIcon)
+                                    }
+                                });
+                            });
+
+
+                            this.markers.push({ marker, almacen });
                         });
-    
-    
-                        this.markers.push({ marker, almacen });
-                    });*/
-                }
 
-                
-
-                this.hideMarkers();
-            }
+                        this.hideMarkers();
+                    }
+                 }
+            });
         }
     }
 
     // Habilitar interaccion con el mapa
     enableInteractions(): void {
         if (this.map) {
+            console.log('init enableInteractions...');
             //this.getAllWareHouses(); // reload list
             // Mostrar Markers
             this.showMarkers();
@@ -278,6 +252,7 @@ export class MapComponent {
     // Deshabilitar interaccion con el mapa
     disableInteractions(): void {
         if (this.map) {
+            console.log('init disableInteractions...');
             // Ocultar markers
             this.hideMarkers();
             this.showPopupLayout = false;
