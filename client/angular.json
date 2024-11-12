@@ -14,6 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/client",
+            "polyfills": "src/polyfills.ts",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
@@ -40,6 +41,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "polyfills": "src/polyfills.ts",
               "optimization": false,
               "buildOptimizer": false,
               "outputHashing": "all",
