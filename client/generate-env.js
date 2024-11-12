@@ -1,4 +1,10 @@
 const fs = require('fs');
+const path = './src/environments';
+
+// Verifica si la carpeta `environments` existe; si no, créala.
+if (!fs.existsSync(path)) {
+  fs.mkdirSync(path, { recursive: true });
+}
 
 // Lee las variables de entorno desde Vercel
 const API_URL = process.env.API_URL || 'https://securoservapp.onrender.com/';
