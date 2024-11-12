@@ -24,12 +24,8 @@
       "dom"
     ]
   },
-  "files": [
-    "src/polyfills.ts"
-  ],
   "include": [
-    "src/**/*.ts",
-    "src/polyfills.ts"  // Asegúrate de que este archivo esté aquí
+    "src/**/*.ts", // Asegúrate de que este archivo esté aquí
   ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
