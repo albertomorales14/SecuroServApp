@@ -29,7 +29,7 @@
               "node_modules/leaflet/dist/leaflet.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/zone.js/dist/zone.js"]
             
           },
           "configurations": {
@@ -110,7 +110,7 @@
               "node_modules/leaflet/dist/leaflet.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/zone.js/dist/zone.js"]
           }
         }
       }
