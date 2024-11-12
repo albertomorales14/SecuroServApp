@@ -24,6 +24,9 @@
       "dom"
     ]
   },
+  "files": [
+    "src/polyfills.ts"
+  ],
   "include": [
     "src/**/*.ts",
     "src/polyfills.ts"  // Asegúrate de que este archivo esté aquí
