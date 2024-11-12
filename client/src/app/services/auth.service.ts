@@ -25,7 +25,7 @@ export class AuthService {
     constructor(private httpClient: HttpClient, private router: Router, private authState: AuthStateService) { }
 
     register(user: User): Observable<JwtResponse> {
-        return this.httpClient.post<JwtResponse>(`${environment.url}/register`, user).pipe(
+        return this.httpClient.post<JwtResponse>(`${environment.API_URL}/register`, user).pipe(
             tap((response: JwtResponse) => {
                 if (response) {
                     this.authSubject.next(true);
@@ -38,7 +38,7 @@ export class AuthService {
     }
 
     login(user: User): Observable<JwtResponse> {
-        return this.httpClient.post<JwtResponse>(`${environment.url}/login`, user, {
+        return this.httpClient.post<JwtResponse>(`${environment.API_URL}/login`, user, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

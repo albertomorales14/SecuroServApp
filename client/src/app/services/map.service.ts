@@ -44,6 +44,6 @@ export class MapService {
     // Obtener Todos los Almacenes disponibles para el usuario
     getWareHousesByUserId(user: User): Observable<Almacen[]> {
         //return this.httpClient.get<Almacen[]>(`${environment.url}/API/warehouses/User/${user.id}`);
-        return this.httpClient.get<Almacen[]>(`${environment.url}/API/warehouses/User/67228f695119f85127ebef60`);
+        return this.httpClient.get<Almacen[]>(`${environment.API_URL}/API/warehouses/User/67228f695119f85127ebef60`);
     }
 }

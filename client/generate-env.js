@@ -17,7 +17,6 @@ const devConfigFile = `
   export const environment = {
     PRODUCTION: false,
     API_URL: 'http://localhost:5000',
-    url: 'http://localhost:5000',
     DARK_LAYER: '${DARK_LAYER}',
     HILL_SHADE_LAYER: '${HILL_SHADE_LAYER}',
     CLOUDINARY_API_URL: '${CLOUDINARY_API_URL}'
