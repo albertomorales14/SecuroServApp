@@ -1,0 +1,46 @@
+name: Build and Deploy Angular App
+
+on:
+  push:
+    branches:
+      - master  # Ejecuta este workflow cuando haya un push en la rama master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '20'  # Asegúrate de usar una versión compatible con tu proyecto Angular
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Generate environment.prod.ts
+      env:
+        production: ${{ secrets.production }}
+        url: ${{ secrets.url }}
+        apiUrl: ${{ secrets.apiUrl }}
+        appName: ${{ secrets.appName }}
+        DARK_LAYER: ${{ secrets.DARK_LAYER }}
+        HILL_SHADE_LAYER: ${{ secrets.HILL_SHADE_LAYER }}
+        CLOUDINARY_API_URL: ${{ secrets.CLOUDINARY_API_URL }}
+      run: |
+        echo "export const environment = {" > src/environments/environment.prod.ts
+        echo "  production: ${production}," >> src/environments/environment.prod.ts
+        echo "  apiUrl: '${apiUrl}'" >> src/environments/environment.prod.ts
+        echo "  url: ${url}," >> src/environments/environment.prod.ts
+        echo "  appName: ${appName}," >> src/environments/environment.prod.ts
+        echo "  DARK_LAYER: ${DARK_LAYER}," >> src/environments/environment.prod.ts
+        echo "  HILL_SHADE_LAYER: ${HILL_SHADE_LAYER}," >> src/environments/environment.prod.ts
+        echo "  CLOUDINARY_API_URL: ${CLOUDINARY_API_URL}," >> src/environments/environment.prod.ts
+        echo "};" >> src/environments/environment.prod.ts
+        cat src/environments/environment.prod.ts  # Opcional: verifica el archivo
+
+    - name: Build Angular app for production
+      run: npm run build -- --configuration=production
