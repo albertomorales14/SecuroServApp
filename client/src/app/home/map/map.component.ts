@@ -51,7 +51,7 @@ export class MapComponent {
         private mapService: MapService,
         private authService: AuthService
     ) { 
-        this.getAllWareHouses();
+        //this.getAllWareHouses();
         this.defaultLayerImg = `${environment.CLOUDINARY_API_URL}/ORIGINAL_LAYER_wjvlth.png`;
         this.hillShadeImg = `${environment.CLOUDINARY_API_URL}/HILL_SHADE_LAYER_oalgvx.png`;
         this.darkLayerImg = `${environment.CLOUDINARY_API_URL}/DARK_LAYER_xvw2db.png`;
@@ -131,29 +131,19 @@ export class MapComponent {
     private async addMarkers(L: any): Promise<void> {
         if (isPlatformBrowser(this.platformId)) {
 
-            this.getAllWareHouses();
-
             const redIcon = L.icon(MARKER.RED);
             const redActiveIcon = L.icon(MARKER.RED_ACTIVE);
             const greenIcon = L.icon(MARKER.GREEN);
             const greenActiveIcon = L.icon(MARKER.GREEN_ACTIVE);
             const homeIcon = L.icon(MARKER.HOME);
 
-
-            if (this.map) {
-
-                const homeMarker = L.marker(COORDENADAS.HOME, { icon: homeIcon }).addTo(this.map);
-                //this.markers.push(homeMarker);
-                this.markers.push({ marker: homeMarker, almacen: this.mapService.getEmptyWareHouse() });
-
-                //const m1 = L.marker([this.listaAlmacenes[0].lat, this.listaAlmacenes[0].long], { icon: redIcon }).addTo(this.map);
-                //this.markers.push(m1);
-
-                if (this.listaAlmacenes.length === 0) {
-                    alert('Error: Hubo un problema al cargar los almacenes. Reintentando...');
-                    //this.getAllWareHouses();
-                } else {
-                    this.listaAlmacenes.forEach((almacen) => {
+            //this.getAllWareHouses();
+            this.mapService.getWareHousesByUserId(this.authService.getUser()).subscribe({
+                next: (data) => {
+                    // Establece el valor de la lista global con todos los almacenes
+                    this.listaAlmacenes = data;
+                    console.log('lista de almacenes obtenida: ');
+                    data.forEach(almacen => {
                         /******** temp */console.log('bucle: ' + almacen);
                         const marker = L.marker(
                             [almacen.lat, almacen.long], {
@@ -190,6 +180,66 @@ export class MapComponent {
     
                         this.markers.push({ marker, almacen });
                     });
+                },
+                error: (error) => {
+                    console.error('Error al obtener almacenes:', error);
+                },
+                complete: () => { }
+            });
+
+            
+
+
+            if (this.map) {
+
+                const homeMarker = L.marker(COORDENADAS.HOME, { icon: homeIcon }).addTo(this.map);
+                //this.markers.push(homeMarker);
+                this.markers.push({ marker: homeMarker, almacen: this.mapService.getEmptyWareHouse() });
+
+                //const m1 = L.marker([this.listaAlmacenes[0].lat, this.listaAlmacenes[0].long], { icon: redIcon }).addTo(this.map);
+                //this.markers.push(m1);
+
+                if (this.listaAlmacenes.length === 0) {
+                    //alert('Error: Hubo un problema al cargar los almacenes. Reintentando...');
+                    //this.getAllWareHouses();
+                } else {
+                    /*this.listaAlmacenes.forEach((almacen) => {
+                        
+                        const marker = L.marker(
+                            [almacen.lat, almacen.long], {
+                            icon: almacen.comprado ? greenIcon : redIcon
+                        }
+                        ).addTo(this.map);
+    
+                        const popupContent = document.querySelectorAll('.popupTemplate');
+                        popupContent.forEach(popupContent => {
+                            marker.bindPopup(popupContent);
+                        });
+    
+                        ///const popupContent = this.createPopupContent(almacen);
+                        ///marker.bindPopup(popupContent);
+    
+                        marker.on('click', () => {
+                            this.mapService.setMarkerData(almacen);
+                            this.showPopupLayout = true;
+                            marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
+                            marker.on('mouseout', () => {
+                                marker.setIcon(almacen.comprado ? greenIcon : redIcon)
+                            });
+                        });
+    
+                        marker.on('mouseover', () => {
+                            marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
+                            marker.on('mouseout', () => {
+                                if (!this.showPopupLayout) {
+                                    marker.setIcon(almacen.comprado ? greenIcon : redIcon)
+                                }
+                            });
+                        });
+    
+    
+                        this.markers.push({ marker, almacen });
+                    });*/
                 }
 
                 
@@ -202,7 +252,7 @@ export class MapComponent {
     // Habilitar interaccion con el mapa
     enableInteractions(): void {
         if (this.map) {
-            this.getAllWareHouses(); // reload list
+            //this.getAllWareHouses(); // reload list
             // Mostrar Markers
             this.showMarkers();
             this.showPopupLayout = false;
