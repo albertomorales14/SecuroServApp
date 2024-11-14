@@ -11,6 +11,9 @@ const API_URL = process.env.API_URL;
 const PRODUCTION = process.env.PRODUCTION === 'true';
 const DARK_LAYER = process.env.DARK_LAYER;
 const HILL_SHADE_LAYER = process.env.HILL_SHADE_LAYER;
+const OPEN_STREET_MAP = process.env.OPEN_STREET_MAP;
+const OPEN_STREET_MAP_HOT = process.env.OPEN_STREET_MAP_HOT;
+const GRID_MAP = process.env.GRID_MAP;
 const CLOUDINARY_API_URL = process.env.CLOUDINARY_API_URL;
 
 // Config del archivo environment.ts para DEV
@@ -20,6 +23,9 @@ const devConfigFile = `
     API_URL: 'http://localhost:5000',
     DARK_LAYER: '${DARK_LAYER}',
     HILL_SHADE_LAYER: '${HILL_SHADE_LAYER}',
+    OPEN_STREET_MAP: '${OPEN_STREET_MAP}',
+    OPEN_STREET_MAP_HOT: '${OPEN_STREET_MAP_HOT}',
+    GRID_MAP: '${GRID_MAP}',
     CLOUDINARY_API_URL: '${CLOUDINARY_API_URL}'
   };
 `;
@@ -31,6 +37,9 @@ const prodConfigFile = `
     API_URL: '${API_URL}',
     DARK_LAYER: '${DARK_LAYER}',
     HILL_SHADE_LAYER: '${HILL_SHADE_LAYER}',
+    OPEN_STREET_MAP: '${OPEN_STREET_MAP}',
+    OPEN_STREET_MAP_HOT: '${OPEN_STREET_MAP_HOT}',
+    GRID_MAP: '${GRID_MAP}',
     CLOUDINARY_API_URL: '${CLOUDINARY_API_URL}'
   };
 `;
