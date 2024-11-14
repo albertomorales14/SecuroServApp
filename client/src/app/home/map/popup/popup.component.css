@@ -115,6 +115,13 @@ progress::-webkit-progress-value {
     position: absolute;
 }
 
+.progress-fill {
+    height: 3vh;
+    background-color: var(--red-securo-serv);
+    width: 0;
+    transition: width 0.3s ease;
+}
+
 .popupTemplate-div2 {
     background-color: black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);

@@ -1,18 +1,19 @@
 const fs = require('fs');
 const path = './src/environments';
 
-// Verifica si la carpeta `environments` existe; si no, créala.
+// Verifica si la carpeta `environments` existe, si no existe la crea
 if (!fs.existsSync(path)) {
-  fs.mkdirSync(path, { recursive: true });
+    fs.mkdirSync(path, { recursive: true });
 }
 
-const API_URL = process.env.API_URL || 'https://securoservapp.onrender.com/';
+// Variables de entorno
+const API_URL = process.env.API_URL;
 const PRODUCTION = process.env.PRODUCTION === 'true';
 const DARK_LAYER = process.env.DARK_LAYER;
 const HILL_SHADE_LAYER = process.env.HILL_SHADE_LAYER;
 const CLOUDINARY_API_URL = process.env.CLOUDINARY_API_URL;
 
-// Configuración del archivo environment.ts para desarrollo
+// Config del archivo environment.ts para DEV
 const devConfigFile = `
   export const environment = {
     PRODUCTION: false,
@@ -23,7 +24,7 @@ const devConfigFile = `
   };
 `;
 
-// Configuración del archivo environment.prod.ts para producción
+// Config del archivo environment.prod.ts para PRO
 const prodConfigFile = `
   export const environment = {
     PRODUCTION: ${PRODUCTION},

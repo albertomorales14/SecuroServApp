@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'app-register',
@@ -14,7 +15,14 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class RegisterComponent {
 
-    constructor(private authService: AuthService, private router: Router) { }
+    securoservImg: string = '';
+
+    constructor(private authService: AuthService, private router: Router) {
+        /*this.authService.getCloudinaryImage('securoserv-logo_kjijgb.png').subscribe(url => {
+            this.securoservImg = url;
+        });*/
+        this.securoservImg = `${environment.CLOUDINARY_API_URL}/securoserv-logo_kjijgb.png`;
+    }
 
     navigateToLogin() {
         this.router.navigate(['/auth/login']);

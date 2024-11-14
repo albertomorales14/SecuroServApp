@@ -26,3 +26,12 @@ export const homeComponentAnimation = [
         ])
     ])
 ];
+
+export const popUpAnimation = [
+    trigger('showPopUp', [
+        transition(':enter', [
+            style({ opacity: 0, backgroundColor: 'white' }),
+            animate('800ms ease-in', style({ opacity: 1, backgroundColor: 'rgba(0, 0, 0, 0.85)' }))
+        ])
+    ])
+];

@@ -9,7 +9,7 @@
         <button (click)="setActiveButton(2); showOnSizeWareHouses('Pequeño')" [ngClass]="{'top-button-active': activeButtonIndex === 2}">
             PEQUEÑOS
         </button>
-        <button (click)="setActiveButton(3); showOnSizeWareHouses('Mediano')" [ngClass]="{'top-button-active': activeButtonIndex === 5}">
+        <button (click)="setActiveButton(3); showOnSizeWareHouses('Mediano')" [ngClass]="{'top-button-active': activeButtonIndex === 3}">
             MEDIANOS
         </button>
         <button (click)="setActiveButton(4); showOnSizeWareHouses('Grande')" [ngClass]="{'top-button-active': activeButtonIndex === 4}">
@@ -22,7 +22,7 @@
             -
         </button>
     </div>
-    <div id="map"></div>
+    <div id="map" [ngClass]="{ 'mapHeight': !isLayoutVisible }"></div>
     <div class="fixed-popup" *ngIf="showPopupLayout && !isLayoutVisible">
         <app-popup></app-popup>
     </div>

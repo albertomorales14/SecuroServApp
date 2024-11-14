@@ -1,7 +1,7 @@
 <div *ngIf="markerData.comprado; else template2">
-    <app-comprado [markerData]="markerData" [imageSrc]="imageSrc"></app-comprado>
-  </div>
-  
-  <ng-template #template2>
-    <app-no-comprado [markerData]="markerData" [imageSrc]="imageSrc"></app-no-comprado>
-  </ng-template>
+    <app-comprado [@showPopUp] [markerData]="markerData" [imageSrc]="imageSrc"></app-comprado>
+</div>
+
+<ng-template #template2>
+    <app-no-comprado [@showPopUp] [markerData]="markerData" [imageSrc]="imageSrc"></app-no-comprado>
+</ng-template>

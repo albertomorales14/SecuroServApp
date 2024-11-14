@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { User } from '../models/user';
 import { JwtResponse } from '../models/jwt-response';
 import { map, tap, catchError } from 'rxjs/operators';
-import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, throwError, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthStateService } from './auth-state.service';
 import { jwtDecode } from 'jwt-decode';
@@ -121,4 +121,25 @@ export class AuthService {
         this.tempUsername = '';
         this.tempPassword = '';
     }
+
+    getCloudinaryImage(src: string): Observable<string> {
+        const imageUrl = `${environment.CLOUDINARY_API_URL}/${src}`;
+      
+        return this.httpClient.head(imageUrl, { observe: 'response' }).pipe(
+          map(response => {
+            if (response.status === 200) {
+              // La imagen existe, retorna la URL de la imagen
+              return imageUrl;
+            } else {
+              // Si no es 200, considera que la imagen no está disponible
+              alert('no')
+              throw new Error('Image not found');
+            }
+          }),
+          catchError(() => {
+            // En caso de error, retorna un observable con una URL de imagen por defecto
+            return of('/img/securoserv-logo.png'); // Pon aquí tu imagen por defecto
+          })
+        );
+      }
 }

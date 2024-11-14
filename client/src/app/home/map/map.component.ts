@@ -20,6 +20,7 @@ export class MapComponent {
     // Mostrar / Ocultar layout Resumen
     @Output() layoutToggled = new EventEmitter<boolean>(); // Evento para emitir el cambio de visibilidad
     isLayoutVisible: boolean = true;
+    mapHeight: string = '100vh';
 
     // Botonera filtro superior
     activeButtonIndex: number = 0;
@@ -42,6 +43,7 @@ export class MapComponent {
     // Layers
     hillShadeLayer: any;
     darkLayer: any;
+    openStreetMapHot: any;
 
     defaultLayerImg: string = '';
     hillShadeImg: string = '';
@@ -52,18 +54,14 @@ export class MapComponent {
         private mapService: MapService,
         private authService: AuthService
     ) {
-        //this.getAllWareHouses();
         this.defaultLayerImg = `${environment.CLOUDINARY_API_URL}/ORIGINAL_LAYER_wjvlth.png`;
         this.hillShadeImg = `${environment.CLOUDINARY_API_URL}/HILL_SHADE_LAYER_oalgvx.png`;
         this.darkLayerImg = `${environment.CLOUDINARY_API_URL}/DARK_LAYER_xvw2db.png`;
     }
 
     ngAfterViewInit(): void {
-        // Aquí puedes estar seguro de que el DOM de Angular está listo
-        console.log('ngAfterViewInit...')
+        // Angular DOM ready:
         this.popupContent = document.querySelectorAll('.popupTemplate');
-                            
-        
     }
 
     async ngOnInit(): Promise<void> {
@@ -83,10 +81,19 @@ export class MapComponent {
                 minZoom: 14
             });
 
+            this.openStreetMapHot = L.tileLayer(LAYER.OPEN_STREET_MAP_HOT, {
+                opacity: 0.4,
+                maxZoom: 18,
+                minZoom: 14
+            });
+
             this.map = L.map('map', {
                 center: [36.13326, -5.45051],
                 zoom: 16,
-                layers: [this.darkLayer, this.hillShadeLayer],
+                layers: [
+                    this.darkLayer, 
+                    this.hillShadeLayer
+                ],
                 dragging: this.interactionsEnabled,
                 scrollWheelZoom: this.interactionsEnabled,
                 doubleClickZoom: this.interactionsEnabled,
@@ -101,23 +108,13 @@ export class MapComponent {
 
             this.setBounds(L);
             this.addMarkers(L);
-
-
-
-            // Añade la capa de cuadrícula personalizada al mapa
-            //////const gridLayer = new CustomGridLayer();
-            //////await gridLayer.addTo(this.map);
+            //this.addGrid(L, 1);
 
             // pintar coordenadas en consola
             this.map.on('click', (e: L.LeafletMouseEvent) => {
                 this.showPopupLayout = false;
-                console.log('showPopupLayout ' + this.showPopupLayout);
                 this.printCoordinates(e.latlng); // Llamar a la función que imprime las coordenadas
             });
-
-
-
-
         }
     }
 
@@ -127,7 +124,6 @@ export class MapComponent {
 
     // Establece los límites de desplazamiento máximo
     private setBounds(L: any) {
-        console.log('init setBounds...');
         const bounds = L.latLngBounds(
             COORDENADAS.SOUTHWEST, // Esquina suroeste (límite inferior)
             COORDENADAS.NORTHEAST  // Esquina noreste (límite superior)
@@ -138,11 +134,28 @@ export class MapComponent {
         });
     }
 
+    private addGrid(L: any, interval: number): void {
+        if (isPlatformBrowser(this.platformId)) {
+            const bounds = this.map.getBounds();
+            const startLat = Math.floor(bounds.getSouthWest().lat / interval) * interval;
+            const endLat = Math.ceil(bounds.getNorthEast().lat / interval) * interval;
+            const startLng = Math.floor(bounds.getSouthWest().lng / interval) * interval;
+            const endLng = Math.ceil(bounds.getNorthEast().lng / interval) * interval;
+        
+            // Crear líneas de latitud
+            for (let lat = startLat; lat <= endLat; lat += interval) {
+                L.polyline([[lat, startLng], [lat, endLng]], { color: 'white', weight: 0.5 }).addTo(this.map);
+            }
+            // Crear líneas de longitud
+            for (let lng = startLng; lng <= endLng; lng += interval) {
+                L.polyline([[startLat, lng], [endLat, lng]], { color: 'white', weight: 0.5 }).addTo(this.map);
+            }
+        }
+    }
 
     // Añade los marcadores de los almacenes
     private addMarkers(L: any): void {
         if (isPlatformBrowser(this.platformId)) {
-            console.log('init addMarkers...');
 
             const redIcon = L.icon(MARKER.RED);
             const redActiveIcon = L.icon(MARKER.RED_ACTIVE);
@@ -192,14 +205,12 @@ this.popupContent.forEach((popupContent: any) => {
 
                             marker.on('click', () => {
                                 
-                                console.log(' antes clic showPopupLayout ' + this.showPopupLayout);
                                 this.mapService.setMarkerData(almacen);
                                 this.showPopupLayout = true;
                                 marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
                                 marker.on('mouseout', () => {
                                     marker.setIcon(almacen.comprado ? greenIcon : redIcon)
                                 });
-                                console.log('despues showPopupLayout ' + this.showPopupLayout);
                             });
 
                             marker.on('mouseover', () => {
@@ -224,9 +235,8 @@ this.popupContent.forEach((popupContent: any) => {
 
     // Habilitar interaccion con el mapa
     enableInteractions(): void {
+        this.mapHeight = '100vh';
         if (this.map) {
-            console.log('init enableInteractions...');
-            //this.getAllWareHouses(); // reload list
             // Mostrar Markers
             this.showMarkers();
             this.showPopupLayout = false;
@@ -252,7 +262,6 @@ this.popupContent.forEach((popupContent: any) => {
     // Deshabilitar interaccion con el mapa
     disableInteractions(): void {
         if (this.map) {
-            console.log('init disableInteractions...');
             // Ocultar markers
             this.hideMarkers();
             this.showPopupLayout = false;
@@ -275,7 +284,7 @@ this.popupContent.forEach((popupContent: any) => {
         }
     }
 
-    // Método para ocultar los markers
+    // Ocultar los markers
     hideMarkers(): void {
         this.markers.forEach(marker => {
             // Hace los markers invisibles
@@ -284,9 +293,10 @@ this.popupContent.forEach((popupContent: any) => {
         });
     }
 
-    // Método para mostrar TODOS los markers
+    // Mostrar TODOS los markers
     showMarkers(): void {
         // Hace los markers visibles
+        this.setActiveButton(0);
         this.markers.forEach(marker => marker.marker.setOpacity(1));
     }
 
@@ -318,27 +328,22 @@ this.popupContent.forEach((popupContent: any) => {
         this.activeRelieveIndex = index;
     }
 
+    // Capa Hill Shade
     setHillShadeLayer() {
-        this.map.removeLayer(this.darkLayer);
-        this.map.removeLayer(this.hillShadeLayer);
+        this.darkLayer.setOpacity(0);
         this.hillShadeLayer.setOpacity(1);
-        this.map.addLayer(this.hillShadeLayer);
     }
 
+    // Capa Oscura Minimalista
     setDarkLayer() {
-        this.map.removeLayer(this.darkLayer);
-        this.map.removeLayer(this.hillShadeLayer);
         this.darkLayer.setOpacity(1);
-        this.map.addLayer(this.darkLayer);
+        this.hillShadeLayer.setOpacity(0);
     }
 
+    // Capa por defecto
     restoreMapLayers() {
-        this.map.removeLayer(this.darkLayer);
-        this.map.removeLayer(this.hillShadeLayer);
         this.darkLayer.setOpacity(0.6);
-        this.map.addLayer(this.darkLayer);
         this.hillShadeLayer.setOpacity(0.4);
-        this.map.addLayer(this.hillShadeLayer);
     }
 
     // Método que el padre puede llamar para pulsar el botón hijo
@@ -367,45 +372,4 @@ this.popupContent.forEach((popupContent: any) => {
             btn.click();
         });
     }
-
-    // Obtener todos los Almacenes disponibles para el usuario actual
-    private getAllWareHouses(): void {
-        this.mapService.getWareHousesByUserId(this.authService.getUser()).subscribe({
-            next: (data) => {
-                // Establece el valor de la lista global con todos los almacenes
-                this.listaAlmacenes = data;
-                console.log('lista de almacenes obtenida: ');
-                data.forEach(element => {
-                    console.log('item: ' + element.name);
-                });
-            },
-            error: (error) => {
-                console.error('Error al obtener almacenes:', error);
-            },
-            complete: () => { }
-        });
-    }
 }
-
-/*
-class CustomGridLayer extends L.GridLayer {
-  constructor(private platformId: Object) {
-    super();
-  }
-
-  override createTile(coords: L.Coords): HTMLElement {
-    // Verifica si estás en el navegador antes de acceder a `window` o manipular el DOM
-    if (isPlatformBrowser(this.platformId)) {
-      const tile = document.createElement('div');
-      tile.style.outline = '1px solid rgba(0, 0, 0, 0.5)'; // Borde de la cuadrícula
-      tile.style.fontSize = '10px';
-      tile.style.color = 'black';
-      tile.innerHTML = `(${coords.x}, ${coords.y}, ${coords.z})`; // Coordenadas opcionales
-      return tile;
-    }
-    
-    // Si no estamos en el navegador, devuelve un elemento vacío
-    return document.createElement('div');
-  }
-}
-  */

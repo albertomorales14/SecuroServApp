@@ -6,36 +6,42 @@
     z-index: 500;
     padding: 1%;
     color: white;
-    width: 80%;
+    width: 75%;
 }
 
-/* Resumen Grid */
-.resume-grid-parent {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    gap: 0.75rem;
-}
-
-.resume-grid-parent > div {
+.home-component-div {
     background-color: rgba(0, 0, 0, 0.85);
     padding: 10px;
 }
 
-/* Componente 1 */
-.div1-resume-grid-child {
-    grid-column: span 3 / span 3;
-    grid-row: span 3 / span 3;
-    
+/* Resumen Grid */
+.resume-grid-parent {
+    display: flex;
+    /*grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 0.75rem;*/
 }
 
-/* Componente 2: Gráfico de Donnut */
-.div2-resume-grid-child {
-    grid-column: span 2 / span 2;
-    grid-row: span 8 / span 8;
-    grid-column-start: 4;
+.resume-grid-left {
+    flex: 8;
 }
 
+.resume-grid-right {
+    flex: 4;
+    overflow: hidden;
+}
+
+.resume-grid-div1 {
+    margin: 0 5px 10px 0;;
+}
+
+.resume-grid-block2 {
+    height: 60vh;
+}
+
+.resume-grid-div2 {
+    margin: 0 0 5px 5px;
+}
 
 .div2-container > div > h2 {
     font-weight: 100;
@@ -49,12 +55,13 @@
 }
 
 /* Componente 3 (Botón ALMACENES) */
-.div3-resume-grid-child {
-    grid-column: span 3 / span 3;
-    grid-row-start: 4;
-}
+
 
 /* Grid dentro del div 3 */
+.resume-grid-div3 {
+    margin: 5px 5px 10px 0;
+}
+
 .div3-grid-parent {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -88,11 +95,8 @@
 }
 
 /* Componente 4: Gráfico de Barras */
-.div4-resume-grid-child {
-    grid-column: span 3 / span 3;
-    grid-row: span 6 / span 6;
-    grid-column-start: 1;
-    grid-row-start: 5;
+.resume-grid-div4 {
+    margin: 5px 5px 0 0;
 }
 
 .div4-container > div > h2 {
@@ -100,10 +104,59 @@
 }
 
 /* Último componente */
-.div5-resume-grid-child {
-    grid-column: span 2 / span 2;
-    grid-row: span 2 / span 2;
-    grid-column-start: 4;
-    grid-row-start: 9;
+.resume-grid-div5 {
+    margin: 10px 0 0 5px;
+    height: -webkit-fill-available;
 }
         
+/* smartphone screen */
+@media screen and (max-width: 800px) {
+
+    /* Home Main Page */
+    .resumen-page {
+        width: 95%;
+        font-size: 11px;
+        top: 45%;
+    }
+
+    .resume-grid-parent {
+        display: block;
+    }
+
+    .resume-grid-div1, 
+    .resume-grid-div2, 
+    .resume-grid-div3, 
+    .resume-grid-div4, 
+    .resume-grid-div5 {
+        margin: 0;
+    }
+
+    .home-component-div {
+        margin: 10px 0 !important;
+    }
+
+    
+
+    /* Almacenes Button */
+    .div3-grid-parent {
+        display: block;
+    }
+
+    .resume-grid-right {
+        flex: 4;
+        overflow: visible;
+    }
+
+    .resume-grid-div5 {
+        height: auto;
+    }
+
+}
+
+@media screen and (max-width: 1500px) and (min-width: 1250px) {
+
+    .resumen-page {
+        left: 45%;
+    }
+
+}

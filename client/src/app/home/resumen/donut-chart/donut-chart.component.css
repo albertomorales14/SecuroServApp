@@ -1,7 +1,7 @@
 #doughnut-chart {
-    aspect-ratio: auto 514 / 514 !important;
+    /*aspect-ratio: auto 514 / 514 !important;
     height: 514px;
-    width: 514px;
+    width: 514px;*/
 }
 
 .center-text {
@@ -27,6 +27,7 @@
     padding: 5%;
     position: relative;
     text-align: center;
+    height: 50vh;
 }
 
 .doughnut-chart-container:hover {

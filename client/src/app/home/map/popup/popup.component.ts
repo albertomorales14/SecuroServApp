@@ -4,13 +4,15 @@ import { MapService } from '../../../services/map.service';
 import { CompradoComponent } from './comprado/comprado.component';
 import { NoCompradoComponent } from './no-comprado/no-comprado.component';
 import { environment } from '../../../../environments/environment';
+import { popUpAnimation } from '../../../../assets/animations';
 
 @Component({
     selector: 'app-popup',
     standalone: true,
     imports: [CommonModule, CompradoComponent, NoCompradoComponent],
     templateUrl: './popup.component.html',
-    styleUrl: './popup.component.css', encapsulation: ViewEncapsulation.None
+    styleUrl: './popup.component.css', encapsulation: ViewEncapsulation.None,
+    animations: [popUpAnimation]
 })
 export class PopupComponent {
 

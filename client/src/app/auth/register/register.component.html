@@ -1,6 +1,6 @@
 <div class="register-body">
     <div class="register-container">
-        <img class="securoser-logo-img" src="/img/securoserv-logo.png" alt="SecuroServ Logo" />
+        <img class="securoser-logo-img" [src]="securoservImg" alt="SecuroServ Logo" />
         <h2>CREA UNA NUEVA CUENTA</h2>
         <form #registerForm="ngForm" class="register-form" (ngSubmit)="onRegister(registerForm)" >
             <div class="register-form-content">
