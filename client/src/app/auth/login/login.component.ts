@@ -16,13 +16,13 @@ export class LoginComponent implements OnInit {
 
     username: string = '';
     password: string = '';
-    securoservImg: string = '';
+    securoservImg: string = 'img/securoserv-logo.png';
 
     constructor(private authService: AuthService, private router: Router) {
         /*this.authService.getCloudinaryImage('securoserv-logo_kjijgb.png').subscribe(url => {
             this.securoservImg = url;
         });*/
-        this.securoservImg = `${environment.CLOUDINARY_API_URL}/securoserv-logo_kjijgb.png`;
+        //this.securoservImg = `${environment.CLOUDINARY_API_URL}/securoserv-logo_kjijgb.png`;
     }
 
     navigateToRegister() {

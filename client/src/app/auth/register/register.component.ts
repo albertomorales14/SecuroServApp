@@ -15,13 +15,13 @@ import { environment } from '../../../environments/environment';
 })
 export class RegisterComponent {
 
-    securoservImg: string = '';
+    securoservImg: string = 'img/securoserv-logo.png';
 
     constructor(private authService: AuthService, private router: Router) {
         /*this.authService.getCloudinaryImage('securoserv-logo_kjijgb.png').subscribe(url => {
             this.securoservImg = url;
         });*/
-        this.securoservImg = `${environment.CLOUDINARY_API_URL}/securoserv-logo_kjijgb.png`;
+        //this.securoservImg = `${environment.CLOUDINARY_API_URL}/securoserv-logo_kjijgb.png`;
     }
 
     navigateToLogin() {
