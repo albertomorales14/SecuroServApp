@@ -236,6 +236,8 @@ this.popupContent.forEach((popupContent: any) => {
     // Habilitar interaccion con el mapa
     enableInteractions(): void {
         this.mapHeight = '100vh';
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         if (this.map) {
             // Mostrar Markers
             this.showMarkers();

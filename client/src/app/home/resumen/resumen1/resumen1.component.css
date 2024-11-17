@@ -1,0 +1,36 @@
+.resumen1-grid-parent {
+    display: flex;
+}
+
+.resumen1-grid-child1 {
+    flex: 10;
+}
+
+.resumen1-grid-child2 {
+    flex: 3;
+}
+
+.logout-btn:hover {
+    cursor: var(--gtav-cursor), auto !important;
+    background: var(--red-securo-serv) !important;
+}
+
+.logout-btn {
+    background: linear-gradient(360deg, rgba(30, 30, 30, 0.3), #00000066);
+    border: none;
+    color: white;
+    font-size: 14px;
+    position: relative;
+    box-shadow: inset 0 4px 8px rgb(119 119 119 / 30%);
+    outline: none;
+    width: 100%;
+    height: -webkit-fill-available;
+}
+
+.logout-btn::after {
+    content: "";
+    pointer-events: none; /* evita tapar el hover */
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+    z-index: 0;
+}

@@ -1,3 +1,9 @@
-<h2>Bienvenido, {{ username }}</h2>
-<button (click)="onLogout()">logout</button>
-<p>Gestiona tus almacenes de mercancía especial</p>
+<div class="resumen1-grid-parent">
+    <div class="resumen1-grid-child1">
+        <h2>Bienvenido, {{ username }}</h2>
+        <p>Gestiona tus almacenes de mercancía especial</p>
+    </div>
+    <div class="resumen1-grid-child2">
+        <button class="logout-btn" (click)="onLogout()">Cerrar sesión</button>
+    </div>
+</div>
