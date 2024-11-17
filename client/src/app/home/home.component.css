@@ -126,6 +126,10 @@
         margin: 0;
     }
 
+    .resume-grid-div3 {
+        height: 50px !important;
+    }
+
     .home-component-div {
         margin: 10px 0 !important;
     }

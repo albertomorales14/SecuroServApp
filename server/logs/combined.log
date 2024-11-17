@@ -19,3 +19,6 @@
 2024-11-17T16:14:12.207Z [info]: 	> Login: Acesso correcto (authController.js)
 2024-11-17T16:14:12.209Z [info]: 	> Usuario conectado: "Cutiti007" (authController.js)
 2024-11-17T16:14:12.661Z [info]: 	> getAlmacenesByUserId: Todos los almacenes del usuario obtenidos (almacenController.js)
+2024-11-17T20:31:27.309Z [info]: 	> Login: Acesso correcto (authController.js)
+2024-11-17T20:31:27.315Z [info]: 	> Usuario conectado: "Cutiti007" (authController.js)
+2024-11-17T20:31:28.606Z [info]: 	> getAlmacenesByUserId: Todos los almacenes del usuario obtenidos (almacenController.js)
