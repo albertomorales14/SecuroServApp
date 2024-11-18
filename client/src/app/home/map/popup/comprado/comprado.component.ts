@@ -11,5 +11,6 @@ export class CompradoComponent {
 
     @Input() markerData: any;
     @Input() imageSrc: string = '';
+    @Input() isModalOpen = false;
 
 }

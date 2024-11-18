@@ -7,9 +7,12 @@ import { MapComponent } from './map/map.component';
 import { homeComponentAnimation } from '../../assets/animations';
 import { Resumen1Component } from './resumen/resumen1/resumen1.component';
 import { Resumen2Component } from './resumen/resumen2/resumen2.component';
+import { Resumen5Component } from './resumen/resumen5/resumen5.component';
 import { DonutChartComponent } from './resumen/donut-chart/donut-chart.component';
 import { BarChartComponent } from './resumen/bar-chart/bar-chart.component';
+import { ModalComponent } from './modal/modal.component';
 import { EventEmitter, Output } from '@angular/core';
+import { ModalService } from '../services/modal.service';
 
 @Component({
     selector: 'app-home',
@@ -20,7 +23,9 @@ import { EventEmitter, Output } from '@angular/core';
         Resumen2Component,
         DonutChartComponent,
         BarChartComponent,
-        MapComponent
+        Resumen5Component,
+        MapComponent,
+        ModalComponent
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
@@ -32,7 +37,11 @@ export class HomeComponent implements OnInit {
     isLayoutVisible: boolean = true;
     @ViewChild(MapComponent) childComponent!: MapComponent;
 
-    constructor(private authService: AuthService, @Inject(PLATFORM_ID) private platformId: Object) { }
+    constructor(
+        private authService: AuthService,
+        public modalService: ModalService,
+        @Inject(PLATFORM_ID) private platformId: Object
+    ) { }
 
     // Mostrar / Ocultar Layout Resumen
     onLayoutToggled(isVisible: boolean) {
@@ -62,6 +71,7 @@ export class HomeComponent implements OnInit {
 
 
     }
+
 
     /*ngAfterViewInit() {
         if(isPlatformBrowser(this.platformId)){

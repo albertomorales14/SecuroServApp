@@ -1,19 +1,22 @@
 import { Component, Inject, PLATFORM_ID, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PopupComponent } from './popup/popup.component';
+import { ModalComponent } from '../modal/modal.component';
 import { MapService } from '../../services/map.service';
 import { AuthService } from '../../services/auth.service';
 import { Almacen } from '../../models/almacen';
 import { LAYER, MARKER, COORDENADAS } from '../../../assets/mapsUtils';
+import { mapAnimation } from '../../../assets/animations';
 import { environment } from '../../../environments/environment';
 import * as L from 'leaflet';
 
 @Component({
     selector: 'app-map',
     standalone: true,
-    imports: [CommonModule, PopupComponent],
+    imports: [CommonModule, PopupComponent, ModalComponent],
     templateUrl: './map.component.html',
-    styleUrl: './map.component.css', encapsulation: ViewEncapsulation.None
+    styleUrl: './map.component.css', encapsulation: ViewEncapsulation.None,
+    animations: [mapAnimation]
 })
 export class MapComponent {
 
@@ -39,6 +42,9 @@ export class MapComponent {
     // PopUp
     showPopupLayout: boolean | undefined = false;
     popupContent: any;
+
+    // Modal
+    isModalOpen = false;
 
     // Layers
     hillShadeLayer: any;
@@ -374,4 +380,12 @@ this.popupContent.forEach((popupContent: any) => {
             btn.click();
         });
     }
+
+    showModal() {
+        this.isModalOpen = true;
+      }
+    
+      hideModal() {
+        this.isModalOpen = false;
+      }
 }

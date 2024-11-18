@@ -118,6 +118,10 @@
         display: block;
     }
 
+    .resume-grid-div1 {
+        height: 100px !important;
+    }
+
     .resume-grid-div1, 
     .resume-grid-div2, 
     .resume-grid-div3, 

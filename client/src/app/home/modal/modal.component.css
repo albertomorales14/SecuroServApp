@@ -1,0 +1,110 @@
+/* Fondo de la Modal */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+/* Modal completa */
+.modal-content {
+    color: white;
+    width: 40%;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+}
+
+/* image container */
+.modal-img-content {
+    text-align: center;
+    padding: 5%;
+}
+
+/* SecuroServ image */
+.modal-img-content > img {
+    width: 20%;
+}
+
+/* Header */
+.modal-header {
+    background-color: var(--dark-green-securo-serv);
+    padding: 2% 5%;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Body */
+.modal-body {
+    background-color: black;
+    text-align: center;
+    padding: 5%;
+}
+
+/* Footer */
+.modal-footer {
+    background-color: black;
+    text-align: end;
+    padding: 2%;
+    margin-top: -1px;
+}
+
+/* Cancel Button */
+.modal-btn-cancel {
+    background: var(--dark-red-securo-serv);
+    border: none;
+    color: white;
+    padding: 2% 3%;
+    font-size: 14px;
+    margin: 0 1%;
+}
+
+.modal-btn-cancel:hover {
+    background: var(--red-securo-serv);
+    cursor: var(--gtav-cursor), auto !important;
+}
+
+/* Confirm Button */
+.modal-btn-confirm {
+    background: var(--dark-green-securo-serv);
+    border: none;
+    color: white;
+    padding: 2% 3%;
+    font-size: 14px;
+    margin: 0 1%;
+}
+
+.modal-btn-confirm:hover {
+    background: var(--green-securo-serv);
+    cursor: var(--gtav-cursor), auto !important;
+}
+
+/* smartphone screen */
+@media screen and (max-width: 800px) {
+
+    .modal-content {
+        width: 85%;
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+    .modal-content {
+        width: 60%;
+    }
+
+}
+
+@media screen and (max-width: 1350px) {
+
+    .modal-content {
+        width: 50%;
+    }
+
+}

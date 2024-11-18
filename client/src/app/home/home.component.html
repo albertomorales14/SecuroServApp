@@ -6,10 +6,10 @@
 
                 <div class="resume-grid-left">
                     <div class="resume-grid-block1">
-                        <div [@aparecer1] class="home-component-div resume-grid-div1">
+                        <div [@showHomeComponent1] class="home-component-div resume-grid-div1">
                             <app-resumen1></app-resumen1>
                         </div>
-                        <div [@aparecer2] class="home-component-div resume-grid-div3">
+                        <div [@showHomeComponent2] class="home-component-div resume-grid-div3">
                             <div class="div3-grid-parent">
                                 <div class="div3-grid-child1">
                                     <app-resumen2></app-resumen2>
@@ -22,12 +22,12 @@
                             </div>
                         </div>
         
-                        <div [@aparecer2] class="home-component-div resume-grid-div4">
+                        <div [@showHomeComponent3] class="home-component-div resume-grid-div4">
                             <div class="div4-container">
                                 <div class="div4-title">
                                     <h2>ALMACENES</h2>
                                 </div>
-                                <div class="resumen-bar-chart-container">
+                                <div [@showHomeComponent6] class="resumen-bar-chart-container">
                                     <app-bar-chart></app-bar-chart>
                                 </div>
                                 
@@ -37,12 +37,12 @@
                 </div>
                 <div class="resume-grid-right">
                     <div class="resume-grid-block2">
-                        <div [@aparecer2] class="home-component-div resume-grid-div2">
+                        <div [@showHomeComponent4] class="home-component-div resume-grid-div2">
                             <div class="div2-container">
                                 <div>
                                     <h2>TOTAL DE EXISTENCIAS</h2>
                                 </div>
-                                <div [@aparecer4] class="div2-img-container">
+                                <div [@showHomeComponent7] class="div2-img-container">
                                     <app-donut-chart></app-donut-chart>
                                 </div>
                                 <div class="num-existencias">
@@ -50,10 +50,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div [@aparecer3] class="home-component-div resume-grid-div5">
-                            Link Ventas Page???
-                            Lorem ipsum dolor auptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                        <div [@showHomeComponent5] class="home-component-div resume-grid-div5">
+                            <app-resumen5></app-resumen5>
                         </div>
                     </div>
                 </div>
@@ -70,6 +68,7 @@
         </div>
         <div class="map-container">
             <app-map (layoutToggled)="onLayoutToggled($event)"></app-map>
+            <app-modal *ngIf="modalService.isModalOpen" (close)="modalService.closeModal()"></app-modal>
         </div>
     </div>
 </div>

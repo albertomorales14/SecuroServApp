@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
     username: string = '';
     password: string = '';
-    securoservImg: string = 'img/securoserv-logo.png';
+    securoservImg: string = '../../../assets/img/securoserv-logo.png';
 
     constructor(private authService: AuthService, private router: Router) {
         /*this.authService.getCloudinaryImage('securoserv-logo_kjijgb.png').subscribe(url => {

@@ -13,6 +13,9 @@ export class MapService {
     private markerDataSource = new BehaviorSubject<any>(null);
     markerData$ = this.markerDataSource.asObservable();
 
+    // Numero de almacenes en propiedad del usuario
+    numAlmacenesPropiedad: number = 0;
+
     constructor(private httpClient: HttpClient) {}
 
     setMarkerData(markerData: any) {
@@ -45,5 +48,13 @@ export class MapService {
     getWareHousesByUserId(user: User): Observable<Almacen[]> {
         //return this.httpClient.get<Almacen[]>(`${environment.url}/API/warehouses/User/${user.id}`);
         return this.httpClient.get<Almacen[]>(`${environment.API_URL}/API/warehouses/User/67228f695119f85127ebef60`);
+    }
+
+    getNumAlmacenes(): number {
+        return this.numAlmacenesPropiedad;
+    }
+
+    setNumAlmacenes(num: number): void {
+        this.numAlmacenesPropiedad = num;
     }
 }

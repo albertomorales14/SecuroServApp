@@ -1,0 +1,34 @@
+.ad-hawk-btn {
+    width: 55%;
+    background-color: var(--dark-red-securo-serv);
+    border: none;
+}
+
+.ad-hawk-btn:hover {
+    cursor: var(--gtav-cursor), auto !important;
+    background-color: var(--ad-hawk-color);
+}
+
+.ad-hawk-btn > div {
+    display: flex;
+}
+
+.ad-hawk-btn-txt {
+    font-weight: bold;
+    margin: auto;
+    flex: 9;
+    font-size: 18px;
+    text-align: left;
+    color: white;
+}
+
+.ad-hawk-img-container {
+    margin: 5px;
+    margin-top: 6px;
+    flex: 3;
+}
+
+.ad-hawk-img {
+    width: 75%;
+    margin: inherit;
+}

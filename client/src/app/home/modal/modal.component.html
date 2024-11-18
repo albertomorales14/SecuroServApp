@@ -1,0 +1,17 @@
+<div class="modal-backdrop" (click)="closeModal()"></div>
+<div class="modal-content">
+    <div class="modal-img-content">
+        <img src="../../../assets/img/securoserv-logo.png" alt="securoserv-logo" />
+    </div>
+    <div class="modal-header">
+        {{ modalHeader }}
+    </div>
+    <div class="modal-body">
+        <p>{{ modalBody }}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-btn-cancel" (click)="closeModal()">Cancelar</button>
+        <button class="modal-btn-confirm" (click)="handleConfirm()">Confirmar</button>
+    </div>
+
+</div>

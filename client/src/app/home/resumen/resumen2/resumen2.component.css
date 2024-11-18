@@ -21,3 +21,9 @@
     grid-column-start: 4;
     grid-row-start: 1;
 }
+
+/* Color de texto rojo */
+.resume2-val-txt {
+    color: var(--dark-red-securo-serv);
+    font-weight: bold;
+}

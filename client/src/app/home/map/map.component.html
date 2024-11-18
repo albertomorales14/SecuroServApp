@@ -1,24 +1,29 @@
 <div class="map-container">
     <div class="top-map-container" *ngIf="!isLayoutVisible">
-        <button (click)="setActiveButton(0); showMarkers()" [ngClass]="{'top-button-active': activeButtonIndex === 0}">
+        <button [@showFilterButton1] (click)="setActiveButton(0); showMarkers()"
+            [ngClass]="{'top-button-active': activeButtonIndex === 0}">
             TODOS
         </button>
-        <button (click)="setActiveButton(1); showMarkersPropiedad()" [ngClass]="{'top-button-active': activeButtonIndex === 1}">
+        <button [@showFilterButton2] (click)="setActiveButton(1); showMarkersPropiedad()"
+            [ngClass]="{'top-button-active': activeButtonIndex === 1}">
             EN PROPIEDAD
         </button>
-        <button (click)="setActiveButton(2); showOnSizeWareHouses('Pequeño')" [ngClass]="{'top-button-active': activeButtonIndex === 2}">
+        <button [@showFilterButton3] (click)="setActiveButton(2); showOnSizeWareHouses('Pequeño')"
+            [ngClass]="{'top-button-active': activeButtonIndex === 2}">
             PEQUEÑOS
         </button>
-        <button (click)="setActiveButton(3); showOnSizeWareHouses('Mediano')" [ngClass]="{'top-button-active': activeButtonIndex === 3}">
+        <button [@showFilterButton4] (click)="setActiveButton(3); showOnSizeWareHouses('Mediano')"
+            [ngClass]="{'top-button-active': activeButtonIndex === 3}">
             MEDIANOS
         </button>
-        <button (click)="setActiveButton(4); showOnSizeWareHouses('Grande')" [ngClass]="{'top-button-active': activeButtonIndex === 4}">
+        <button [@showFilterButton5] (click)="setActiveButton(4); showOnSizeWareHouses('Grande')"
+            [ngClass]="{'top-button-active': activeButtonIndex === 4}">
             GRANDES
         </button>
-        <button (click)="onZoomIn()" class="custom-zoom-btn custom-zoom-in-btn">
+        <button [@showFilterButton6] (click)="onZoomIn()" class="custom-zoom-btn custom-zoom-in-btn">
             +
         </button>
-        <button (click)="onZoomOut()" class="custom-zoom-btn custom-zoom-out-btn">
+        <button [@showFilterButton7] (click)="onZoomOut()" class="custom-zoom-btn custom-zoom-out-btn">
             -
         </button>
     </div>
@@ -28,22 +33,28 @@
     </div>
 
     <div class="relieve-buttons" *ngIf="!isLayoutVisible">
-        <button (click)="restoreMapLayers(); setActiveLayer(0)" [ngClass]="{'layer-button-active': activeRelieveIndex === 0}">
+        <button (click)="restoreMapLayers(); setActiveLayer(0)"
+            [ngClass]="{'layer-button-active': activeRelieveIndex === 0}">
             <img [src]="defaultLayerImg" alt="default_layer_img" />
         </button>
-        <button (click)="setDarkLayer(); setActiveLayer(1)" [ngClass]="{'layer-button-active': activeRelieveIndex === 1}">
+        <button (click)="setDarkLayer(); setActiveLayer(1)"
+            [ngClass]="{'layer-button-active': activeRelieveIndex === 1}">
             <img [src]="darkLayerImg" alt="dark_layer_img" />
         </button>
-        <button (click)="setHillShadeLayer(); setActiveLayer(2)" [ngClass]="{'layer-button-active': activeRelieveIndex === 2}">
+        <button (click)="setHillShadeLayer(); setActiveLayer(2)"
+            [ngClass]="{'layer-button-active': activeRelieveIndex === 2}">
             <img [src]="hillShadeImg" alt="hill_shade_layer_img" />
         </button>
     </div>
-    
+
     <div class="bottom-map-container">
-        <button (click)="disableInteractions()" [ngClass]="{ 'button-active': !interactionsEnabled, 'button-inactive': interactionsEnabled }" style="margin-right: 3px;">
+        <button (click)="disableInteractions()"
+            [ngClass]="{ 'button-active': !interactionsEnabled, 'button-inactive': interactionsEnabled }"
+            style="margin-right: 3px;">
             RESUMEN
         </button>
-        <button (click)="enableInteractions()" [ngClass]="{ 'button-active warehousesbutton': interactionsEnabled, 'button-inactive warehousesbutton': !interactionsEnabled }">
+        <button (click)="enableInteractions()"
+            [ngClass]="{ 'button-active warehousesbutton': interactionsEnabled, 'button-inactive warehousesbutton': !interactionsEnabled }">
             ALMACENES
         </button>
     </div>
