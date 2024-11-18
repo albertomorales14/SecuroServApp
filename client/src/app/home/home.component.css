@@ -111,7 +111,7 @@
     .resumen-page {
         width: 95%;
         font-size: 11px;
-        top: 50%;
+        top: 55%;
     }
 
     .resume-grid-parent {
@@ -119,7 +119,12 @@
     }
 
     .resume-grid-div1 {
-        height: 100px !important;
+        height: 120px !important;
+    }
+
+    .logout-btn {
+        padding: 8% 1%;
+        height: auto;
     }
 
     .resume-grid-div1, 
