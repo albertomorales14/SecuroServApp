@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Almacen } from '../models/almacen';
-import { User } from '../models/user';
+import { Almacen } from '../../models/almacen';
+import { User } from '../../models/user';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,11 @@ export class MapService {
     // Numero de almacenes en propiedad del usuario
     numAlmacenesPropiedad: number = 0;
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) { }
+
+    refreshMarkers() {
+
+    }
 
     setMarkerData(markerData: any) {
         this.markerDataSource.next(markerData);
@@ -50,6 +54,11 @@ export class MapService {
         return this.httpClient.get<Almacen[]>(`${environment.API_URL}/API/warehouses/User/67228f695119f85127ebef60`);
     }
 
+    // Actualizar la lista local de almacenes y emitir cambios
+    updateAlmacenes(newAlmacenes: Almacen[]) {
+        this.markerDataSource.next(newAlmacenes);
+    }
+
     getNumAlmacenes(): number {
         return this.numAlmacenesPropiedad;
     }
@@ -57,4 +66,5 @@ export class MapService {
     setNumAlmacenes(num: number): void {
         this.numAlmacenesPropiedad = num;
     }
+
 }

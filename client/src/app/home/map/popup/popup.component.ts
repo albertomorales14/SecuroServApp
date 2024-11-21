@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MapService } from '../../../services/map.service';
+import { MapService } from '../../../services/map/map.service';
 import { CompradoComponent } from './comprado/comprado.component';
 import { NoCompradoComponent } from './no-comprado/no-comprado.component';
 import { environment } from '../../../../environments/environment';

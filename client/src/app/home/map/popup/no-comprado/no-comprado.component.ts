@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
-import { ModalService } from '../../../../services/modal.service';
+import { ModalService } from '../../../../services/modal/modal.service';
 
 @Component({
     selector: 'app-no-comprado',
@@ -16,6 +16,7 @@ export class NoCompradoComponent {
     constructor(private modalService: ModalService) { }
 
     openModal() {
+        this.modalService.setItem(this.markerData);
         this.modalService.openModal();
     }
 }

@@ -27,4 +27,19 @@ almacenController.getAlmacenesByUserId = async (request, response) => {
     }
 }
 
+// Actualizar un Almacen
+almacenController.updateAlmacen = async (request, response) => {
+    try {
+        const { comprado } = request.body;
+        await AlmacenDTO.findByIdAndUpdate(request.params.id, {
+            comprado
+        });
+        logger.info('\t> updateAlmacen: Almacen actualizado (almacenController.js)');
+        response.json({ message: 'Almacen actualizado' });
+    } catch (error) {
+        logger.error('\t> Error: updateAlmacen: Actualizar un almacen (almacenController.js): ' + error);
+        response.status(500).json({ message: 'Error al actualizar un almacen' });
+    }
+}
+
 module.exports = almacenController;

@@ -2,8 +2,8 @@ import { Component, Inject, PLATFORM_ID, ViewEncapsulation, EventEmitter, Output
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PopupComponent } from './popup/popup.component';
 import { ModalComponent } from '../modal/modal.component';
-import { MapService } from '../../services/map.service';
-import { AuthService } from '../../services/auth.service';
+import { MapService } from '../../services/map/map.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Almacen } from '../../models/almacen';
 import { LAYER, MARKER, COORDENADAS } from '../../../assets/mapsUtils';
 import { mapAnimation } from '../../../assets/animations';
@@ -169,16 +169,11 @@ export class MapComponent {
             const greenActiveIcon = L.icon(MARKER.GREEN_ACTIVE);
             const homeIcon = L.icon(MARKER.HOME);
 
-            //this.getAllWareHouses();
             this.mapService.getWareHousesByUserId(this.authService.getUser()).subscribe({
                 next: (data) => {
                     // Establece el valor de la lista global con todos los almacenes
                     this.listaAlmacenes = data;
                     console.log('lista de almacenes obtenida: ');
-                    
-
-
-                    
                 },
                 error: (error) => {
                     console.error('Error al obtener almacenes:', error);
@@ -186,31 +181,20 @@ export class MapComponent {
                 complete: () => {
                     if (this.map) {
                         const homeMarker = L.marker(COORDENADAS.HOME, { icon: homeIcon }).addTo(this.map);
-                        //this.markers.push(homeMarker);
                         this.markers.push({ marker: homeMarker, almacen: this.mapService.getEmptyWareHouse() });
 
                         this.listaAlmacenes.forEach(almacen => {
-                    /******** temp */console.log('bucle: ' + almacen);
                             const marker = L.marker(
                                 [almacen.lat, almacen.long], {
                                 icon: almacen.comprado ? greenIcon : redIcon
                             }
                             ).addTo(this.map);
 
-                            // el bueno
-                            /*
-                            const popupContent = document.querySelectorAll('.popupTemplate');
-                            popupContent.forEach(popupContent => {
+                            this.popupContent.forEach((popupContent: any) => {
                                 marker.bindPopup(popupContent);
                             });
-*/
-this.popupContent.forEach((popupContent: any) => {
-    marker.bindPopup(popupContent);
-});
-                            
 
                             marker.on('click', () => {
-                                
                                 this.mapService.setMarkerData(almacen);
                                 this.showPopupLayout = true;
                                 marker.setIcon(almacen.comprado ? greenActiveIcon : redActiveIcon)
@@ -227,7 +211,6 @@ this.popupContent.forEach((popupContent: any) => {
                                     }
                                 });
                             });
-
 
                             this.markers.push({ marker, almacen });
                         });
@@ -380,12 +363,4 @@ this.popupContent.forEach((popupContent: any) => {
             btn.click();
         });
     }
-
-    showModal() {
-        this.isModalOpen = true;
-      }
-    
-      hideModal() {
-        this.isModalOpen = false;
-      }
 }

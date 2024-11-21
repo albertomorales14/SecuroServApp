@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { User } from '../models/user';
-import { JwtResponse } from '../models/jwt-response';
+import { environment } from '../../../environments/environment';
+import { User } from '../../models/user';
+import { JwtResponse } from '../../models/jwt-response';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, BehaviorSubject, throwError, of } from 'rxjs';
 import { Router } from '@angular/router';

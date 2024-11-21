@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { homeComponentAnimation } from '../../../../assets/animations';
 import { CHARTS_UTILS } from '../../../../assets/chartsUtils';
-import { MapService } from '../../../services/map.service';
+import { MapService } from '../../../services/map/map.service';
 
 @Component({
     selector: 'app-resumen2',

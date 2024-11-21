@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ModalService } from '../../services/modal.service';
+import { ModalService } from '../../services/modal/modal.service';
 import { MODAL_UTILS } from '../../../assets/modalUtils';
+import { WarehouseService } from '../../services/warehouse/warehouse.service';
+import { Router } from '@angular/router';
+import { MapService } from '../../services/map/map.service';
 
 @Component({
     selector: 'app-modal',
@@ -17,20 +20,34 @@ export class ModalComponent {
     modalHeader: string = MODAL_UTILS.BUY_WAREHOUSE_TITLE;
     modalBody: string = MODAL_UTILS.BUY_WAREHOUSE_BODY;
 
-    constructor(private modalService: ModalService) {
-        
-    }
+    constructor(
+        private modalService: ModalService, 
+        private mapService: MapService,
+        private warehouseService: WarehouseService, 
+        private router: Router
+    ) {}
 
     ngOnInit() {
-        
+
     }
 
     closeModal() {
         this.close.emit();
     }
 
+    // provisional: comprar almacen
     handleConfirm() {
-        
+
+        this.warehouseService.updateWareHouse(
+            this.modalService.getItem()._id, {
+            comprado: true
+        }).subscribe(() => {
+            this.router.navigate(['/home']);
+            // Recargar markers
+            this.mapService.refreshMarkers();
+            this.close.emit();
+        });
+
         
     }
 }

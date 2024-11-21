@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ViewChild, ViewChildren, ElementRef, Renderer2, QueryList } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth/auth.service';
 import { isPlatformBrowser } from '@angular/common';
 import { MapComponent } from './map/map.component';
 import { homeComponentAnimation } from '../../assets/animations';
@@ -12,7 +12,7 @@ import { DonutChartComponent } from './resumen/donut-chart/donut-chart.component
 import { BarChartComponent } from './resumen/bar-chart/bar-chart.component';
 import { ModalComponent } from './modal/modal.component';
 import { EventEmitter, Output } from '@angular/core';
-import { ModalService } from '../services/modal.service';
+import { ModalService } from '../services/modal/modal.service';
 
 @Component({
     selector: 'app-home',

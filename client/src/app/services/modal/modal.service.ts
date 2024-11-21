@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class ModalService {
 
     isModalOpen = false;
+    item: any;
 
     constructor() { }
 
@@ -15,6 +16,14 @@ export class ModalService {
 
     closeModal() {
         this.isModalOpen = false;
+    }
+
+    setItem(item: any) {
+        this.item = item;
+    }
+
+    getItem() {
+        return this.item;
     }
 
 }

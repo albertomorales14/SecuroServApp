@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth/auth.service';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({

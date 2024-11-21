@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { homeComponentAnimation } from '../../../../assets/animations';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
     selector: 'app-resumen1',
