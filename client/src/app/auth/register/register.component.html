@@ -1,16 +1,37 @@
 <div class="register-body">
     <div class="register-container">
-        <img class="securoser-logo-img" [src]="securoservImg" alt="SecuroServ Logo" />
+        <img class="securoser-logo-img" [src]="securoservImg" alt="SecuroServ Logo" (click)="tooglePasswordVisibility()" />
         <h2>CREA UNA NUEVA CUENTA</h2>
         <form #registerForm="ngForm" class="register-form" (ngSubmit)="onRegister(registerForm)" >
             <div class="register-form-content">
                     <div>
                         <label for="username">Usuario</label>
-                        <input type="text" id="username" name="username" ngModel required autocomplete="off"/>
+                        <input type="text" id="username" name="username" ngModel required #usernameField="ngModel" minlength="5" autocomplete="off"
+                        [ngClass]="{'input-field-error': usernameField.invalid && usernameField.touched}"/>
+                        <div *ngIf="usernameField.invalid && usernameField.touched">
+                            <small *ngIf="usernameField.errors?.['required']">
+                                {{ validations.USER_REQUIRED }}
+                            </small>
+                            <small *ngIf="usernameField.errors?.['minlength']">
+                                {{ validations.USER_MIN_LENGTH }}
+                            </small>
+                            <small *ngIf="usernameField.errors?.['exist']">
+                                {{ msgError }}
+                            </small>
+                        </div>
                     </div>
                     <div>
                         <label for="password">Contraseña</label>
-                        <input type="password" id="password" name="password" ngModel required />
+                        <input [type]="pswdType" id="password" name="password" ngModel required #passwordField="ngModel" minlength="3"
+                        [ngClass]="{'input-field-error': passwordField.invalid && passwordField.touched}" />
+                        <div *ngIf="passwordField.invalid && passwordField.touched">
+                            <small *ngIf="passwordField.errors?.['required']">
+                                {{ validations.PASSWORD_REQUIRED }}
+                            </small>
+                            <small *ngIf="passwordField.errors?.['minlength']">
+                                {{ validations.PASSWORD_MIN_LENGTH }}
+                            </small>
+                        </div>
                     </div>
             </div>
             <br>
@@ -21,7 +42,16 @@
                     </button>
                 </div>
                 <div class="register-form-bottom-btn">
-                    <input type="submit" value="Crear cuenta" />
+                    <button type="submit" [ngClass]="{ 'btn-loading': isLoading }" [disabled]="isLoading">
+                        <div class="register-grid-btn">
+                            <div class="loader-container" *ngIf="isLoading">
+                                <div class="loader"></div>
+                            </div>
+                            <div class="register-txt-btn">
+                                Crear cuenta
+                            </div>
+                        </div>
+                    </button>
                 </div>
             </div>
         </form>

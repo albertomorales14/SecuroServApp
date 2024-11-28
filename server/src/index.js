@@ -29,6 +29,9 @@ app.post('/register', require('./route/authRoutes'));
 // Almacenes
 app.use('/api/warehouses', require('./route/almacenRoutes.js'));
 
+// Logger
+app.use('/api', require('./route/loggerRoutes.js'));
+
 const PORT = process.env.PORT || 4000;
 
 const main = () => {

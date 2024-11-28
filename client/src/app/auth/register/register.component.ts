@@ -1,27 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { NgForm, FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
-import { NgForm } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { environment } from '../../../environments/environment';
+import { VALIDATIONS } from '../../../assets/validationsUtils';
 
 @Component({
     selector: 'app-register',
     standalone: true,
-    imports: [FormsModule, MatIconModule],
+    imports: [CommonModule, FormsModule, MatIconModule],
     templateUrl: './register.component.html',
     styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
     securoservImg: string = '../../../assets/img/securoserv-logo.png';
+    validations: any = VALIDATIONS;
+    msgError: string = '';
+    pswdType: string = 'password';
+    isLoading: boolean = false;
 
-    constructor(private authService: AuthService, private router: Router) {
-        /*this.authService.getCloudinaryImage('securoserv-logo_kjijgb.png').subscribe(url => {
-            this.securoservImg = url;
-        });*/
-        //this.securoservImg = `${environment.CLOUDINARY_API_URL}/securoserv-logo_kjijgb.png`;
+    constructor(private authService: AuthService, private router: Router) { }
+
+    ngOnInit(): void {
+        this.authService.clearSuccessMsg();
+        this.isLoading = false;
     }
 
     navigateToLogin() {
@@ -30,18 +34,43 @@ export class RegisterComponent {
 
     onRegister(registerForm: NgForm): void {
         if (registerForm.valid) {
+            this.isLoading = true;
             this.authService.register(registerForm.value).subscribe({
-                next: (response) => {
-                    this.authService.setTempCredentials(registerForm.value.username, registerForm.value.password);
-                    this.router.navigate(['/auth/login']);
+                next: () => {
+                    this.msgError = this.authService.getErrMsg()?.message;
+
+                    if (this.msgError === VALIDATIONS.USER_EXIST) {
+                        registerForm.controls['username']?.setErrors({ exist: true });
+                        this.isLoading = false;
+                    } else {
+                        
+                        this.authService.setTempCredentials(registerForm.value.username, registerForm.value.password);
+                        setTimeout(() => {
+                            this.isLoading = false;
+                            this.router.navigate(['/auth/login']);
+                        }, 2000);
+                    }
+
+                    
                 },
                 error: (error) => {
                     // Manejo de errores adicional aquí
+                },
+                complete: () => {
+                    console.log('complete')
+                    
                 }
             });
         } else {
             console.log('Formulario no válido');
+            registerForm.controls['username']?.markAsTouched();
+            registerForm.controls['password']?.markAsTouched();
         }
+    }
+
+    // Ver contraseña
+    tooglePasswordVisibility() {
+        this.pswdType = this.pswdType === 'text' ? 'password' : 'text';
     }
 
 }

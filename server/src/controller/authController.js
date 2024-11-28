@@ -19,7 +19,7 @@ authController.createUser = async (request, response) => {
         const usuario = await Usuario.find({ username: newUser.username });
         if (usuario.length !== 0) {
             logger.warn('\t> createUser: El usuario ya existe (authController.js)');
-            response.json({ message: 'El usuario ya existe' });
+            response.json({ message: "* Este usuario ya existe" });
         } else {
             await newUser.save();
             response.json(newUser);
@@ -61,12 +61,12 @@ authController.login = async (request, response) => {
                                 response.json(result);
                             } else {
                                 logger.warn("\t> Login: Contraseña incorrecta (authController.js)");
-                                response.json({ message: "Contraseña incorrecta" });
+                                response.json({ message: "* La contraseña es incorrecta" });
                             }
                         });
                 } else {
                     logger.warn('\t> Login: No existe el usuario (authController.js)');
-                    response.json({ mesagge: 'No existe este usuario' });
+                    response.json({ message: "* Este usuario no existe" });
                 }
             });
     } catch (error) {

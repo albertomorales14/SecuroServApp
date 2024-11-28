@@ -1,21 +1,47 @@
 <div class="login-body">
     <div class="login-container">
-        <img class="securoser-logo-img" [src]="securoservImg" alt="SecuroServ Logo" />
+        <img class="securoser-logo-img" [src]="securoservImg" alt="SecuroServ Logo" (click)="tooglePasswordVisibility()" />
         <h2>INICIA SESIÓN</h2>
-        <form #loginForm="ngForm" class="login-form" (ngSubmit)="onLogin(loginForm)">
+        <div *ngIf="successMessage" class="success-msg">
+            {{ successMessage }}
+        </div>
+        <form #loginForm="ngForm" class="login-form" (ngSubmit)="onLogin(loginForm)" novalidate>
             <div class="login-form-content">
                 <div>
                     <label for="username">Usuario</label>
-                    <input type="text" id="username" name="username" [(ngModel)]="username" required
-                        autocomplete="off" />
+                    <input type="text" id="username" name="username" [(ngModel)]="username" required #usernameField="ngModel" minlength="5" autocomplete="off"
+                    [ngClass]="{'input-field-error': usernameField.invalid && usernameField.touched}" />
+                    <div *ngIf="usernameField.invalid && usernameField.touched">
+                        <small *ngIf="usernameField.errors?.['required']">
+                            {{ validations.USER_REQUIRED }}
+                        </small>
+                        <small *ngIf="usernameField.errors?.['minlength']">
+                            {{ validations.USER_MIN_LENGTH }}
+                        </small>
+                        <small *ngIf="usernameField.errors?.['incorrect']">
+                            {{ msgError }}
+                        </small>
+                    </div>
                 </div>
                 <div>
                     <label for="password">Contraseña</label>
-                    <input type="password" id="password" name="password" [(ngModel)]="password" required />
+                    <input [type]="pswdType" id="password" name="password" [(ngModel)]="password" required #passwordField="ngModel" minlength="3" 
+                    [ngClass]="{'input-field-error': passwordField.invalid && passwordField.touched}" />
+                    <div *ngIf="passwordField.invalid && passwordField.touched">
+                        <small *ngIf="passwordField.errors?.['required']">
+                            {{ validations.PASSWORD_REQUIRED }}
+                        </small>
+                        <small *ngIf="passwordField.errors?.['minlength']">
+                            {{ validations.PASSWORD_MIN_LENGTH }}
+                        </small>
+                        <small *ngIf="passwordField.errors?.['incorrect']">
+                            {{ msgError }}
+                        </small>
+                    </div>
                 </div>
             </div>
             <button (click)="navigateToRegister()" class="login-link" tabindex="-1">
-                Crea una cuenta nueva aquí
+                ¿No tienes cuenta aún? Crea una cuenta nueva aquí
             </button>
             <br>
             <div class="login-form-bottom">

@@ -19,6 +19,10 @@
     width: 25%;
 }
 
+.securoser-logo-img:hover {
+    cursor: var(--gtav-cursor), auto !important;
+}
+
 /* Inicia Sesión */
 h2 {
     font-weight: 100;
@@ -57,6 +61,8 @@ input[type="text"]:focus-visible, input[type="password"]:focus-visible {
     display: flex;
     width: 100%;
     margin-top: 5%;
+
+    /**/text-align: -webkit-right;
 }
 
 /* Texto versión */
@@ -87,15 +93,45 @@ input[type="text"]:focus-visible, input[type="password"]:focus-visible {
 }
 
 /* Red button */
-input[type="submit"] {
+button[type="submit"] {
     background-color: var(--dark-red-securo-serv);
     color: white;
     border: none;
-    padding: 5% 15%;
+    /*padding: 5% 15%;*/
+    padding: 5%;
+    width: 70%;
+
 }
 
-input[type="submit"]:hover {
+button[type="submit"]:hover {
     background-color: var(--red-securo-serv);
+    cursor: var(--gtav-cursor), auto !important;
+}
+
+.register-grid-btn {
+    display: flex;
+}
+
+.register-txt-btn {
+    flex: 9;
+    margin: auto;
+}
+
+.loader-container {
+    flex: 2;
+    width: 100%;
+    margin: auto;
+    padding: 0 5px;
+}
+
+/* Validations */
+.input-field-error {
+    border: 1px solid var(--red-securo-serv) !important;
+    color: var(--red-securo-serv) !important;
+}
+
+small {
+    color: var(--red-securo-serv);
 }
 
 @media screen and (max-width: 1250px) {
@@ -126,6 +162,10 @@ input[type="submit"]:hover {
 
     input[type="text"], input[type="password"] {
         width: 60%;
+    }
+
+    button[type="submit"] {
+        width: 85%;
     }
 
 }
@@ -167,3 +207,28 @@ input[type="submit"]:hover {
     }
 }
 
+/* Boton Crear cuenta loader */
+.loader {
+    width: 85%;
+    padding: 5px;
+    margin: auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: white;
+    --_m: conic-gradient(#0000 10%,#000), linear-gradient(#000 0 0) content-box;
+    -webkit-mask: var(--_m);
+    mask: var(--_m);
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+    animation: l3 1s infinite linear;
+}
+@keyframes l3 {to{transform: rotate(1turn)}}
+
+.btn-loading {
+    opacity: 0.7;
+}
+
+.btn-loading:hover {
+    background-color: var(--dark-red-securo-serv) !important;
+    cursor: default !important;
+}
